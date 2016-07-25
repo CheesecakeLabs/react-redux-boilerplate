@@ -1,4 +1,11 @@
-export { App as default } from './App';
-export { Root as default } from './Root';
-export { NotFound as default } from './NotFound';
-export { Counter as default } from './Counter';
+import App from './App';
+import Root from './Root';
+import NotFound from './NotFound';
+import Counter from './Counter';
+
+export {
+  App,
+  Root,
+  NotFound,
+  Counter,
+};
