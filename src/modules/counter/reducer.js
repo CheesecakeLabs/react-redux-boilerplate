@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-import createReducer from '../../../utils/create-reducer';
-import { INCREMENT_COUNTER, DECREMENT_COUNTER } from '../constants';
+import createReducer from '../../utils/create-reducer';
+import { INCREMENT_COUNTER, DECREMENT_COUNTER } from './constants';
 
 
 const INITIAL_STATE = 0;
