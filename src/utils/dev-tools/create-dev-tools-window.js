@@ -1,7 +1,7 @@
 /* eslint no-console:0 */
 import React from 'react';
 import { render } from 'react-dom';
-import DevTools from './devTools';
+import DevTools from './dev-tools';
 
 /**
  * Puts Redux DevTools into a separate window.

@@ -6,7 +6,7 @@ import { browserHistory } from 'react-router';
 import { routerMiddleware } from 'react-router-redux';
 import { persistState } from 'redux-devtools';
 import rootReducer from '../modules/reducers';
-import DevTools from '../utils/DevTools/devTools';
+import DevTools from '../utils/dev-tools/dev-tools';
 
 
 const logger = createLogger({
