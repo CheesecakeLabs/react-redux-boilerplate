@@ -6,7 +6,9 @@
   "license": "MIT",
   "repository": "CheesecakeLabs/react-redux-boilerplate",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "NODE_ENV=development npm start",
+    "build": "NODE_ENV=production webpack --config webpack.config.production.js"
   },
   "devEngines": {
     "node": "6.0.0"
