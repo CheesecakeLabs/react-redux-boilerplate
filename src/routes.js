@@ -1,15 +1,13 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Route } from 'react-router';
-import {
-  App,
-  NotFound,
-  Counter,
-} from './views';
+
+import Home from './views/home';
+import NotFound from './views/not-found';
 
 
 export default (
-  <Route component={App}>
-    <Route path="/" component={Counter} />
+  <Route>
+    <Route path="/" component={Home} />
     <Route path="*" component={NotFound} />
   </Route>
-);
+)
