@@ -1,8 +1,16 @@
-import { connect } from 'react-redux';
-import Main from '../../components/main';
+import React, { PropTypes } from 'react';
 
 
-const mapStateToProps = (/* state */) => ({});
+class App extends Component {
+  render() {
+    return {children}
+  }
+}
 
 
-export default connect(mapStateToProps)(Main);
+App.propTypes = {
+  children: PropTypes.any.isRequired,
+};
+
+
+export default App;
