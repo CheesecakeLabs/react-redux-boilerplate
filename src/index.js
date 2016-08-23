@@ -1,12 +1,12 @@
 /* eslint global-require: 0 */
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { Provider } from 'react-redux';
 
 import configureStore from './store/configure-store';
-import routes from './routes'
+import routes from './routes';
 
 
 const store = configureStore();
@@ -18,15 +18,11 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 
-class Root extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <Router history={history} routes={routes} />
-      </Provider>
-    );
-  }
-}
+const Root = () => (
+  <Provider store={store}>
+    <Router history={history} routes={routes} />
+  </Provider>
+);
 
 
 ReactDOM.render(
