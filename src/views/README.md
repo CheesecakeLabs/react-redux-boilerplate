@@ -1,7 +1,7 @@
 # Views
 
 This section contains application specific view code. Each folder represents a
-screen and it can contain page-specific components.  
+view (page or sub-page) and it can contain view-specific components.  
 
 It should be implemented with this format:  
 
@@ -10,4 +10,4 @@ page-name/
 -- styles.css  
 -- tests.js  
 -- component-name/  
--- -- * same format as generic compoents *  
+-- -- * same format as generic components *  
