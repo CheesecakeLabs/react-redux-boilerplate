@@ -1,8 +1,8 @@
-import React from 'react';
-import { Route } from 'react-router';
+import React from 'react'
+import { Route } from 'react-router'
 
-import Home from './views/home';
-import NotFound from './views/not-found';
+import Home from './views/home'
+import NotFound from './views/not-found'
 
 
 const routes = (
@@ -10,7 +10,7 @@ const routes = (
     <Route path="/" component={Home} />
     <Route path="*" component={NotFound} />
   </Route>
-);
+)
 
 
-export default routes;
+export default routes
