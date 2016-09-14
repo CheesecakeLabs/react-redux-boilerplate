@@ -1,8 +1,7 @@
-const path = require('path');
-const webpack = require('webpack');
+import path from 'path'
+import webpack from 'webpack'
 
-
-module.exports = {
+export default {
   devtool: 'source-map',
   entry: './src/index',
   output: {
@@ -34,4 +33,4 @@ module.exports = {
       exclude: /node_modules/,
     }],
   },
-};
+}
