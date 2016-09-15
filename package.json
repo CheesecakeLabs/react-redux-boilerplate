@@ -6,9 +6,9 @@
   "license": "MIT",
   "repository": "CheesecakeLabs/react-redux-boilerplate",
   "scripts": {
-    "start": "node server.js",
+    "start": "babel-node server.js",
     "dev": "NODE_ENV=development PORT=5000 npm start",
-    "build": "NODE_ENV=production webpack --config webpack.config.production.js",
+    "build": "NODE_ENV=production webpack --config webpack.config.production.babel.js",
     "lint": "eslint src server"
   },
   "devEngines": {
