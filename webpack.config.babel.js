@@ -1,12 +1,12 @@
-const path = require('path');
-const webpack = require('webpack');
-
+import path from 'path'
+import webpack from 'webpack'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: [
     'webpack-hot-middleware/client',
-    './src/index',
+    './client',
   ],
   output: {
     path: path.join(__dirname, 'dist'),
@@ -20,6 +20,7 @@ module.exports = {
         NODE_ENV: JSON.stringify('development'),
       },
     }),
+    new ExtractTextPlugin('[name].css'),
   ],
   resolve: {
     extensions: ['', '.js'],
@@ -29,6 +30,10 @@ module.exports = {
       test: /\.js$/,
       loaders: ['babel'],
       exclude: /node_modules/,
+    }, {
+      test: /\.css$/,
+      loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
+      exclude: /node_modules/,
     }],
   },
-};
+}

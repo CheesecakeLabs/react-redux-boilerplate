@@ -1,6 +1,9 @@
 /* eslint global-require: 0 */
 import React from 'react'
 import ReactDOM from 'react-dom'
+
+import App from './app'
+/*
 import { Router, browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { Provider } from 'react-redux'
@@ -27,5 +30,10 @@ const Root = () => (
 
 ReactDOM.render(
   <Root store={store} history={history} />,
+  document.getElementById('root')
+)*/
+
+ReactDOM.render(
+  <App />,
   document.getElementById('root')
 )

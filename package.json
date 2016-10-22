@@ -6,8 +6,9 @@
   "license": "MIT",
   "repository": "CheesecakeLabs/react-redux-boilerplate",
   "scripts": {
-    "start": "node server.js",
-    "dev": "NODE_ENV=development PORT=5000 npm start",
+    "start": "babel-node server.js",
+    "dev": "NODE_ENV=node PORT=5000 npm start",
+    "dev-webpack": "webpack-dev-server --debug --hot --devtool eval-source-map --output-pathinfo --watch --colors --inline --content-base public --port 8050 --host 0.0.0.0",
     "build": "NODE_ENV=production webpack --config webpack.config.production.js",
     "lint": "eslint src server"
   },
@@ -27,6 +28,7 @@
     "chai": "^3.5.0",
     "chai-enzyme": "^0.5.0",
     "cross-env": "^1.0.8",
+    "css-loader": "^0.25.0",
     "enzyme": "^2.3.0",
     "eslint": "^2.13.0",
     "eslint-config-airbnb": "^9.0.1",
@@ -34,6 +36,7 @@
     "eslint-plugin-jsx-a11y": "^1.5.3",
     "eslint-plugin-react": "^5.2.2",
     "express": "^4.14.0",
+    "extract-text-webpack-plugin": "^1.0.1",
     "fbjs-scripts": "^0.7.1",
     "jsdom": "^9.2.1",
     "mocha": "^2.5.3",
@@ -44,8 +47,10 @@
     "rimraf": "^2.5.2",
     "sinon": "^1.17.4",
     "sinon-chai": "^2.8.0",
+    "style-loader": "^0.13.1",
     "webpack": "^1.13.1",
     "webpack-dev-middleware": "^1.6.1",
+    "webpack-dev-server": "^1.16.2",
     "webpack-hot-middleware": "^2.10.0"
   },
   "dependencies": {
