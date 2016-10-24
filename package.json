@@ -6,11 +6,12 @@
   "license": "MIT",
   "repository": "CheesecakeLabs/react-redux-boilerplate",
   "scripts": {
-    "start": "babel-node server.js",
-    "dev": "NODE_ENV=node PORT=5000 npm start",
-    "dev-webpack": "webpack-dev-server --debug --hot --devtool eval-source-map --output-pathinfo --watch --colors --inline --content-base public --port 8050 --host 0.0.0.0",
-    "build": "NODE_ENV=production webpack --config webpack.config.production.js",
-    "lint": "eslint src server"
+    "start": "nodemon --exec babel-node -- server.js",
+    "dev-server": "NODE_ENV=node PORT=5000 npm start",
+    "dev-client": "webpack-dev-server --debug --hot --devtool eval-source-map --output-pathinfo --watch --colors --inline --content-base public --port 8050 --host 0.0.0.0",
+    "dev": "concurrently --kill-others \"npm run dev-server\" \"npm run dev-client\"",
+    "build": "NODE_ENV=production webpack --config webpack.config.production.babel.js",
+    "lint": "eslint ."
   },
   "devEngines": {
     "node": "6.0.0"
@@ -27,6 +28,7 @@
     "babel-register": "^6.9.0",
     "chai": "^3.5.0",
     "chai-enzyme": "^0.5.0",
+    "concurrently": "^3.1.0",
     "cross-env": "^1.0.8",
     "css-loader": "^0.25.0",
     "enzyme": "^2.3.0",
@@ -40,6 +42,7 @@
     "fbjs-scripts": "^0.7.1",
     "jsdom": "^9.2.1",
     "mocha": "^2.5.3",
+    "nodemon": "^1.11.0",
     "nyc": "^6.6.1",
     "react-addons-test-utils": "^15.1.0",
     "redux-devtools": "^3.3.1",
