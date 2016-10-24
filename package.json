@@ -6,10 +6,12 @@
   "license": "MIT",
   "repository": "CheesecakeLabs/react-redux-boilerplate",
   "scripts": {
-    "start": "node server.js",
-    "dev": "NODE_ENV=development PORT=5000 npm start",
-    "build": "NODE_ENV=production webpack --config webpack.config.production.js",
-    "lint": "eslint src server"
+    "start": "nodemon --exec babel-node -- server.js",
+    "dev-server": "NODE_ENV=node PORT=5000 npm start",
+    "dev-client": "webpack-dev-server --debug --hot --devtool eval-source-map --output-pathinfo --watch --colors --inline --content-base public --port 8050 --host 0.0.0.0",
+    "dev": "concurrently --kill-others \"npm run dev-server\" \"npm run dev-client\"",
+    "build": "NODE_ENV=production webpack --config webpack.config.production.babel.js",
+    "lint": "eslint ."
   },
   "devEngines": {
     "node": "6.0.0"
@@ -18,6 +20,7 @@
     "babel-cli": "^6.10.1",
     "babel-eslint": "^6.0.4",
     "babel-loader": "^6.2.4",
+    "babel-plugin-transform-require-ignore": "^0.0.2",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.5.0",
     "babel-preset-react-hmre": "^1.1.1",
@@ -25,7 +28,9 @@
     "babel-register": "^6.9.0",
     "chai": "^3.5.0",
     "chai-enzyme": "^0.5.0",
+    "concurrently": "^3.1.0",
     "cross-env": "^1.0.8",
+    "css-loader": "^0.25.0",
     "enzyme": "^2.3.0",
     "eslint": "^2.13.0",
     "eslint-config-airbnb": "^9.0.1",
@@ -33,9 +38,11 @@
     "eslint-plugin-jsx-a11y": "^1.5.3",
     "eslint-plugin-react": "^5.2.2",
     "express": "^4.14.0",
+    "extract-text-webpack-plugin": "^1.0.1",
     "fbjs-scripts": "^0.7.1",
     "jsdom": "^9.2.1",
     "mocha": "^2.5.3",
+    "nodemon": "^1.11.0",
     "nyc": "^6.6.1",
     "react-addons-test-utils": "^15.1.0",
     "redux-devtools": "^3.3.1",
@@ -43,8 +50,10 @@
     "rimraf": "^2.5.2",
     "sinon": "^1.17.4",
     "sinon-chai": "^2.8.0",
+    "style-loader": "^0.13.1",
     "webpack": "^1.13.1",
     "webpack-dev-middleware": "^1.6.1",
+    "webpack-dev-server": "^1.16.2",
     "webpack-hot-middleware": "^2.10.0"
   },
   "dependencies": {

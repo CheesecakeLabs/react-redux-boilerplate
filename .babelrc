@@ -3,6 +3,13 @@
   "env": {
     "development": {
       "presets": ["react-hmre"]
+    },
+    "node": {
+      "plugins": [
+        [
+          "babel-plugin-transform-require-ignore", { "extensions": [".css"] }
+        ]
+     ]
     }
   }
 }

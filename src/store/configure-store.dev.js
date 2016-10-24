@@ -16,6 +16,12 @@ const logger = createLogger({
 
 const router = routerMiddleware(browserHistory)
 
+let persistUrl = null
+
+if (process.env.BROWSER) {
+  persistUrl = window.location.href.match(/[?&]debug_session=([^&]+)\b/)
+}
+
 /**
  * Creates a preconfigured store.
  */
@@ -26,21 +32,9 @@ const configureStore = (preloadedState) => {
     compose(
       applyMiddleware(thunk, router, logger),
       DevTools.instrument(),
-      persistState(
-        window.location.href.match(
-          /[?&]debug_session=([^&]+)\b/
-        )
-      )
+      persistState(persistUrl)
     )
   )
-
-  if (module.hot) {
-    // Enable Webpack hot module replacement for reducers
-    module.hot.accept('../modules/reducers', () => {
-      const nextRootReducer = require('../modules/reducers').default
-      store.replaceReducer(nextRootReducer)
-    })
-  }
 
   return store
 }
