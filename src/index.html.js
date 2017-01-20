@@ -1,4 +1,4 @@
-<!doctype html>
+export default (initialHtml) => `<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -7,7 +7,8 @@
   <title>React Redux Boilerplate</title>
 </head>
 <body>
-  <div id="root"></div>
+  <div id="root">${initialHtml}</div>
   <script src="/static/bundle.js"></script>
 </body>
 </html>
+`
