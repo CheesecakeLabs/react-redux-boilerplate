@@ -8,18 +8,20 @@
   "scripts": {
     "start": "node server.js",
     "dev": "NODE_ENV=development PORT=5000 npm start",
-    "build": "NODE_ENV=production webpack --config webpack.config.production.js",
+    "build": "NODE_ENV=production npm run build:server && npm run build:client",
+    "build:client": "NODE_ENV=production webpack --progress --colors --config webpack.config.production.js -p --bail",
+    "build:server": "NODE_ENV=production webpack --progress --colors --config webpack.config.server.js --bail",
     "lint": "eslint src server"
   },
   "devEngines": {
     "node": "6.0.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.10.1",
-    "babel-eslint": "^6.0.4",
-    "babel-loader": "^6.2.4",
-    "babel-preset-es2015": "^6.9.0",
-    "babel-preset-react": "^6.5.0",
+    "babel-cli": "^6.22.2",
+    "babel-eslint": "^6.1.2",
+    "babel-loader": "^6.2.10",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.22.0",
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.9.0",
