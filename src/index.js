@@ -1,4 +1,3 @@
-/* eslint global-require: 0 */
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Router, browserHistory } from 'react-router'
@@ -13,6 +12,7 @@ const store = configureStore()
 const history = syncHistoryWithStore(browserHistory, store)
 
 if (process.env.NODE_ENV === 'development') {
+  // eslint-disable-next-line global-require
   const createDevToolsWindow = require('./utils/dev-tools/create-dev-tools-window').default
   createDevToolsWindow(store)
 }

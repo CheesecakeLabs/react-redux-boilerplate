@@ -1,6 +1,5 @@
-const path = require('path');
-const webpack = require('webpack');
-
+const path = require('path')
+const webpack = require('webpack')
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
@@ -22,13 +21,23 @@ module.exports = {
     }),
   ],
   resolve: {
-    extensions: ['', '.js'],
+    modules: [
+      path.join(__dirname, 'src'),
+      'node_modules',
+    ],
+    extensions: ['.js'],
   },
   module: {
-    loaders: [{
+    rules: [{
       test: /\.js$/,
-      loaders: ['babel'],
+      loader: 'babel-loader',
       exclude: /node_modules/,
+      options: {
+        presets: [
+          'react',
+          ['es2015', { modules: false }],
+        ],
+      },
     }],
   },
-};
+}
