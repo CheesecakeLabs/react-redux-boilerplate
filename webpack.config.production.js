@@ -1,6 +1,5 @@
-const path = require('path');
-const webpack = require('webpack');
-
+const path = require('path')
+const webpack = require('webpack')
 
 module.exports = {
   devtool: 'source-map',
@@ -11,27 +10,40 @@ module.exports = {
     publicPath: '/static/',
   },
   plugins: [
-    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
       },
     }),
     new webpack.optimize.UglifyJsPlugin({
-      compressor: {
+      sourceMap: true,
+      compress: {
         screw_ie8: true,
         warnings: false,
       },
     }),
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+    }),
   ],
   resolve: {
-    extensions: ['', '.js'],
+    modules: [
+      path.join(__dirname, 'src'),
+      'node_modules',
+    ],
+    extensions: ['.js'],
   },
   module: {
-    loaders: [{
+    rules: [{
       test: /\.js$/,
-      loaders: ['babel'],
+      loader: 'babel-loader',
       exclude: /node_modules/,
+      options: {
+        presets: [
+          'react',
+          ['es2015', { modules: false }],
+        ],
+      },
     }],
   },
-};
+}
