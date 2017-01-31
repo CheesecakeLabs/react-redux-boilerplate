@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react'
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import { incrementCounter, decrementCounter } from '../../modules/counter/actions'
@@ -10,13 +9,10 @@ const mapStateToProps = (state) => ({
   counter: state.counter,
 })
 
-const mapDispatchToProps = (dispatch) => (
-  bindActionCreators({
-    increment: incrementCounter,
-    decrement: decrementCounter,
-  }, dispatch)
-)
-
+const mapDispatchToProps = {
+  increment: incrementCounter,
+  decrement: decrementCounter,
+}
 
 const Home = ({ counter, increment, decrement }) => (
   <div>
