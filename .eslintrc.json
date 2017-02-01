@@ -9,7 +9,8 @@
   "rules": {
     "semi": [2, "never"],
     "no-multiple-empty-lines": 2,
-    "no-console": [2, {"allow": ["warn", "info", "error"]}]
+    "no-console": [2, {"allow": ["warn", "info", "error"]}],
+    "import/named": 2
   },
   "plugins": [
     "react"
