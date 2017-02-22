@@ -1,10 +1,10 @@
 const path = require('path')
 
 module.exports = {
-  entry: './server-prod.js',
+  entry: './src/server.js',
   target: 'node',
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'dist-server'),
     filename: 'server.js',
     publicPath: '/static/',
   },
