@@ -4,6 +4,7 @@ import { renderToString } from 'react-dom/server'
 import { match, RouterContext } from 'react-router'
 import { Provider } from 'react-redux'
 
+import './utils/server-status'
 import baseHTML from './index.html'
 import routes from './routes'
 import configureStore from './store/configure-store.prod'
@@ -19,8 +20,13 @@ const getStatus = (err, props) => {
     return 500
   }
 
-  if (props) {
-    return 200
+  // we use try because we cannot afford to break in here
+  try {
+    if (props && props.routes[1].path !== '*') { // * means we hit the wildcard in react-router, meaning it is a 404
+      return 200
+    }
+  } catch (e) {
+    return 500
   }
 
   return 404
@@ -43,15 +49,16 @@ app.get('*', (req, res) => {
         res.status(getStatus(err, props)).send(baseHTML(appHtml))
       } catch (e) {
         console.warn('render error:\n', e, '\n\n')
-        const appHtml = renderToString(
-          <Provider store={store}>
-            <InternalServerError />
-          </Provider>,
-        )
+        const appHtml = renderToString(<Provider store={store}><InternalServerError /></Provider>)
         res.status(500).send(baseHTML(appHtml))
       }
     }
   })
+  console.info(
+    `[${new Date().toLocaleString()}]`,
+    `"${req.method} ${req.url} HTTP/${req.httpVersion}"`,
+    res.statusCode,
+  )
 })
 
 app.listen(port, (err) => {
