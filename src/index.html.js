@@ -1,4 +1,4 @@
-export default (initialHtml) => `<!doctype html>
+module.exports = (initialHtml = '') => `<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">

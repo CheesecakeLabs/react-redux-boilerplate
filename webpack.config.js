@@ -1,4 +1,5 @@
 const path = require('path')
+
 const webpack = require('webpack')
 
 module.exports = {
@@ -17,6 +18,7 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('development'),
+        DEVTOOLS_WINDOW: JSON.stringify(process.env.DEVTOOLS_WINDOW),
       },
     }),
   ],

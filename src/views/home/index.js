@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { incrementCounter, decrementCounter } from '../../modules/counter/actions'
 import Button from '../../components/button'
 
-
 const mapStateToProps = (state) => ({
   counter: state.counter,
 })
@@ -22,12 +21,10 @@ const Home = ({ counter, increment, decrement }) => (
   </div>
 )
 
-
 Home.propTypes = {
   counter: PropTypes.number.isRequired,
   increment: PropTypes.func.isRequired,
   decrement: PropTypes.func.isRequired,
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)
