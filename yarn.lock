@@ -2125,6 +2125,10 @@ ignore@^3.2.0:
   version "3.2.4"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.2.4.tgz#4055e03596729a8fabe45a43c100ad5ed815c4e8"
 
+immutable-devtools@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/immutable-devtools/-/immutable-devtools-0.0.7.tgz#da0fbdd860c3a8a598967fc544bb0329ec3ad26e"
+
 imurmurhash@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/imurmurhash/-/imurmurhash-0.1.4.tgz#9218b9b2b928a238b13dc4fb6b6d576f231453ea"
@@ -3194,6 +3198,10 @@ redux-logger@^2.6.1:
   resolved "https://registry.yarnpkg.com/redux-logger/-/redux-logger-2.8.1.tgz#c00e689ba00342f44858701d76b1d73fbade72bd"
   dependencies:
     deep-diff "0.3.4"
+
+redux-promise-middleware@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/redux-promise-middleware/-/redux-promise-middleware-4.2.0.tgz#052a7ac2df0e3468e196279f14bdefe711d10cac"
 
 redux-thunk@^2.1.0:
   version "2.2.0"
