@@ -20,7 +20,7 @@ const getStatus = (err, props) => {
     return 500
   }
 
-  // we use try because we cannot afford to break in here
+  // do `try` because we cannot afford to break in here
   try {
     if (props && props.routes[1].path !== '*') { // * means we hit the wildcard in react-router, meaning it is a 404
       return 200
@@ -48,6 +48,7 @@ app.get('*', (req, res) => {
         )
         res.status(getStatus(err, props)).send(baseHTML(appHtml))
       } catch (e) {
+        // We should dump this error to a logging service (like Sentry)
         console.warn('render error:\n', e, '\n\n')
         const appHtml = renderToString(<Provider store={store}><InternalServerError /></Provider>)
         res.status(500).send(baseHTML(appHtml))
