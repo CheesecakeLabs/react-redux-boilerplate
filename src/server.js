@@ -12,7 +12,6 @@ import InternalServerError from './views/internal-server-error'
 
 const port = process.env.PORT || 3000
 
-const store = configureStore()
 const app = express()
 
 const getStatus = (err, props) => {
@@ -20,13 +19,9 @@ const getStatus = (err, props) => {
     return 500
   }
 
-  // do `try` because we cannot afford to break in here
-  try {
-    if (props && props.routes[1].path !== '*') { // * means we hit the wildcard in react-router, meaning it is a 404
-      return 200
-    }
-  } catch (e) {
-    return 500
+  const isNotFound = props.routes.find((route) => route.path === '*')
+  if (props && !isNotFound) {
+    return 200
   }
 
   return 404
@@ -40,6 +35,7 @@ app.get('*', (req, res) => {
     if (redirect && !err) {
       res.redirect(redirect.pathname + redirect.search)
     } else {
+      const store = configureStore()
       try {
         const appHtml = renderToString(
           <Provider store={store}>
