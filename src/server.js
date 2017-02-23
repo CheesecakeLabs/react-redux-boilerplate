@@ -40,15 +40,15 @@ app.get('*', (req, res) => {
             <RouterContext {...props} />
           </Provider>,
         )
-        return res.status(getStatus(err, props)).send(baseHTML(appHtml))
-      } catch(e) {
+        res.status(getStatus(err, props)).send(baseHTML(appHtml))
+      } catch (e) {
         console.warn('render error:\n', e, '\n\n')
         const appHtml = renderToString(
           <Provider store={store}>
             <InternalServerError />
           </Provider>,
         )
-        return res.status(500).send(baseHTML(appHtml))
+        res.status(500).send(baseHTML(appHtml))
       }
     }
   })

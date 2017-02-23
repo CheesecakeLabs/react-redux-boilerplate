@@ -7,13 +7,10 @@ import { routerMiddleware } from 'react-router-redux'
 import { persistState } from 'redux-devtools'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import createLogger from 'redux-logger'
-// eslint-disable-next-line import/no-extraneous-dependencies
-import installDevTools from 'immutable-devtools'
 
 import rootReducer from '../modules/reducers'
 import DevTools from '../utils/dev-tools/dev-tools'
 import errorMiddleware from '../middleware/error-middleware'
-
 
 const logger = createLogger({
   level: 'info',
@@ -45,8 +42,6 @@ const configureStore = (preloadedState) => {
       ),
     ),
   )
-
-  installDevTools(immutable)
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
