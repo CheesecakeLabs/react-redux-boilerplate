@@ -8,6 +8,6 @@ export default function errorMiddleware() {
       return action
     }
 
-    return result.catch(Function)
+    return result.catch(() => {})
   }
 }
