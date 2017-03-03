@@ -11,10 +11,15 @@
     "build": "NODE_ENV=production npm run build:server && npm run build:client",
     "build:client": "NODE_ENV=production webpack --progress --colors --config webpack.config.production.js -p --bail",
     "build:server": "NODE_ENV=production webpack --progress --colors --config webpack.config.server.js --bail",
-    "lint": "eslint src server"
+    "lint": "eslint src"
   },
-  "devEngines": {
-    "node": "6.0.0"
+  "babel": {
+    "presets": [["es2015", { "modules": false }], "stage-0", "react"],
+    "env": {
+      "development": {
+        "presets": ["react-hmre"]
+      }
+    }
   },
   "devDependencies": {
     "babel-cli": "^6.22.2",
@@ -38,6 +43,7 @@
     "webpack-hot-middleware": "^2.10.0"
   },
   "dependencies": {
+    "@ckldeveloper/fetch": "^1.0.2",
     "express": "^4.14.0",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",

@@ -39,12 +39,6 @@ module.exports = {
       test: /\.js$/,
       loader: 'babel-loader',
       exclude: /node_modules/,
-      options: {
-        presets: [
-          'react',
-          ['es2015', { modules: false }],
-        ],
-      },
     }],
   },
 }
