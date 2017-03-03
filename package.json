@@ -11,7 +11,7 @@
     "build": "NODE_ENV=production npm run build:server && npm run build:client",
     "build:client": "NODE_ENV=production webpack --progress --colors --config webpack.config.production.js -p --bail",
     "build:server": "NODE_ENV=production webpack --progress --colors --config webpack.config.server.js --bail",
-    "lint": "eslint src server"
+    "lint": "eslint src"
   },
   "babel": {
     "presets": [["es2015", { "modules": false }], "stage-0", "react"],
