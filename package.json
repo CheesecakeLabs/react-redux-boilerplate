@@ -13,8 +13,13 @@
     "build:server": "NODE_ENV=production webpack --progress --colors --config webpack.config.server.js --bail",
     "lint": "eslint src server"
   },
-  "devEngines": {
-    "node": "6.0.0"
+  "babel": {
+    "presets": [["es2015", { "modules": false }], "stage-0", "react"],
+    "env": {
+      "development": {
+        "presets": ["react-hmre"]
+      }
+    }
   },
   "devDependencies": {
     "babel-cli": "^6.22.2",
