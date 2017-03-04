@@ -1,5 +1,7 @@
 const path = require('path')
 
+const webpack = require('webpack')
+
 module.exports = {
   entry: './src/server.js',
   target: 'node',
@@ -15,6 +17,11 @@ module.exports = {
     ],
     extensions: ['.js'],
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      'fetch': () => new Promise(() => {})
+    }),
+  ],
   module: {
     rules: [{
       test: /\.js$/,
