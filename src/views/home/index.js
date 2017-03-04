@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { incrementCounter, decrementCounter } from '../../modules/counter/actions'
 import Button from '../../components/button'
 
+import styles from './styles.css'
+
 const mapStateToProps = (state) => ({
   counter: state.counter,
 })
@@ -16,7 +18,7 @@ const mapDispatchToProps = {
 const Home = ({ counter, increment, decrement }) => (
   <div>
     <Button btnClicked={increment}>Increment</Button>
-    <div>{counter}</div>
+    <div className={styles.counter}>{counter}</div>
     <Button btnClicked={decrement}>Decrement</Button>
   </div>
 )
