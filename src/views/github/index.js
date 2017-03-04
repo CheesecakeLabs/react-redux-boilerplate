@@ -48,9 +48,7 @@ class Github extends Component {
     return (
       <div>
         <p>{member.map(this.renderMember)}</p>
-        <div>
-          {children}
-        </div>
+        {children}
       </div>
     )
   }
