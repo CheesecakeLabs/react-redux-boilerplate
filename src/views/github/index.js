@@ -24,6 +24,7 @@ class Github extends Component {
 
   static defaultProps = {
     member: [],
+    children: null,
   }
 
   componentWillMount() {
