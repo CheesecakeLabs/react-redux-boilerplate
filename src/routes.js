@@ -6,10 +6,12 @@ import Home from './views/home'
 import NotFound from './views/not-found'
 import Github from './views/github'
 import User from './views/github/user'
+import Login from './views/login'
 
 const routes = (
   <Route component={App} >
     <Route path="/" component={Home} />
+    <Route path="/login" component={Login} />
     <Route path="github/:org" component={Github}>
       <Route path=":user" component={User} />
     </Route>
