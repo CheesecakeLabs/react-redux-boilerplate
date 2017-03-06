@@ -11,7 +11,9 @@
     "build": "NODE_ENV=production npm run build:server && npm run build:client",
     "build:client": "NODE_ENV=production webpack --progress --colors --config webpack.config.production.js -p --bail",
     "build:server": "NODE_ENV=production webpack --progress --colors --config webpack.config.server.js --bail",
-    "lint": "eslint src"
+    "lint": "npm run eslint && npm run stylelint",
+    "eslint": "eslint src",
+    "stylelint": "stylelint src/**/*.css"
   },
   "babel": {
     "presets": [["es2015", { "modules": false }], "stage-0", "react"],
@@ -38,6 +40,8 @@
     "redux-devtools": "^3.3.1",
     "redux-devtools-log-monitor": "^1.0.11",
     "redux-logger": "^2.6.1",
+    "stylelint": "^7.9.0",
+    "stylelint-config-standard": "^16.0.0",
     "webpack": "^2.2.0",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.10.0"
