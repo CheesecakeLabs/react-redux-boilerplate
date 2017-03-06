@@ -59,6 +59,7 @@
   },
   "dependencies": {
     "@ckldeveloper/fetch": "^1.0.2",
+    "css-loader": "^0.26.2",
     "express": "^4.14.0",
     "immutable": "^3.8.1",
     "react": "^15.1.0",
