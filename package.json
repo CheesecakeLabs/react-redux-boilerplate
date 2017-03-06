@@ -16,10 +16,21 @@
     "stylelint": "stylelint src/**/*.css"
   },
   "babel": {
-    "presets": [["es2015", { "modules": false }], "stage-0", "react"],
+    "presets": [
+      [
+        "es2015",
+        {
+          "modules": false
+        }
+      ],
+      "stage-0",
+      "react"
+    ],
     "env": {
       "development": {
-        "presets": ["react-hmre"]
+        "presets": [
+          "react-hmre"
+        ]
       }
     }
   },
@@ -49,8 +60,10 @@
   "dependencies": {
     "@ckldeveloper/fetch": "^1.0.2",
     "express": "^4.14.0",
+    "immutable": "^3.8.1",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
+    "react-immutable-proptypes": "^2.1.0",
     "react-redux": "^5.0.2",
     "react-router": "^3.0.2",
     "react-router-redux": "^4.0.5",
