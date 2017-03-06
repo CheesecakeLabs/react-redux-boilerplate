@@ -1,32 +1,37 @@
-import React, { PropTypes } from 'react'
-import { connect } from 'react-redux'
+import React, { PureComponent } from 'react'
 
-import { incrementCounter, decrementCounter } from '../../modules/counter/actions'
 import Button from '../../components/button'
 
 import styles from './styles.css'
 
-const mapStateToProps = (state) => ({
-  counter: state.counter,
-})
+class Home extends PureComponent {
 
-const mapDispatchToProps = {
-  increment: incrementCounter,
-  decrement: decrementCounter,
+  state = {
+    counter: 0,
+  }
+
+  incrementCounter = () => {
+    this.setState({
+      counter: this.state.counter + 1,
+    })
+  }
+
+  decrementCounter = () => {
+    this.setState({
+      counter: this.state.counter - 1,
+    })
+  }
+
+  render() {
+    const { counter } = this.state
+    return (
+      <div>
+        <Button btnClicked={this.incrementCounter}>Increment</Button>
+        {<div className={styles.counter}>{counter}</div>}
+        <Button btnClicked={this.decrementCounter}>Decrement</Button>
+      </div>
+    )
+  }
 }
 
-const Home = ({ counter, increment, decrement }) => (
-  <div>
-    <Button btnClicked={increment}>Increment</Button>
-    <div className={styles.counter}>{counter}</div>
-    <Button btnClicked={decrement}>Decrement</Button>
-  </div>
-)
-
-Home.propTypes = {
-  counter: PropTypes.number.isRequired,
-  increment: PropTypes.func.isRequired,
-  decrement: PropTypes.func.isRequired,
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default Home
