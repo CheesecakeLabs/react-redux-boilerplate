@@ -1,16 +1,19 @@
 import React, { PropTypes, Component } from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
+import { List } from 'immutable'
+import ImmutablePropTypes from 'react-immutable-proptypes'
 
 import { getMembers } from '../../modules/user/actions'
 
-const mapStateToProps = ({ member }, { params }) =>
-  ({ member: member[params.org] })
+const mapStateToProps = ({ member }, { params }) => ({
+  members: member.get(params.org),
+})
 const mapDispatchToProps = { getMembers }
 
 class Github extends Component {
   static propTypes = {
-    member: PropTypes.arrayOf(PropTypes.shape({
+    members: ImmutablePropTypes.listOf(ImmutablePropTypes.contains({
       avatar_url: PropTypes.string,
       login: PropTypes.string,
       name: PropTypes.string,
@@ -23,7 +26,7 @@ class Github extends Component {
   }
 
   static defaultProps = {
-    member: [],
+    members: new List(),
     children: null,
   }
 
@@ -38,16 +41,16 @@ class Github extends Component {
   }
 
   renderMember = (member) => (
-    <Link key={member.login} to={`/github/${this.props.params.org}/${member.login}`}>
-      <img width={40} src={member.avatar_url} alt={`${member.name} 's avatar`} />
+    <Link key={member.get('login')} to={`/github/${this.props.params.org}/${member.get('login')}`}>
+      <img width={40} src={member.get('avatar_url')} alt={`${member.get('name')} 's avatar`} />
     </Link>
   )
 
   render() {
-    const { member, children } = this.props
+    const { members, children } = this.props
     return (
       <div>
-        <p>{member.map(this.renderMember)}</p>
+        <p>{members.map(this.renderMember)}</p>
         {children}
       </div>
     )
