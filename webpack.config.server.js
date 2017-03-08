@@ -1,6 +1,7 @@
 const path = require('path')
 
 const webpack = require('webpack')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: './src/server.js',
@@ -19,8 +20,9 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      'fetch': () => new Promise(() => {})
+      fetch: () => new Promise(() => {}),
     }),
+    new ExtractTextPlugin('styles.css'),
   ],
   module: {
     rules: [{
@@ -30,6 +32,10 @@ module.exports = {
       options: {
         presets: ['react'],
       },
+    }, {
+      test: /\.css$/,
+      loader: ExtractTextPlugin.extract('css-loader?modules&importLoaders=1'),
+      exclude: /node_modules/,
     }],
   },
 }

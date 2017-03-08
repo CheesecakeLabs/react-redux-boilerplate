@@ -1,6 +1,7 @@
 const path = require('path')
 
 const webpack = require('webpack')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   devtool: 'source-map',
@@ -26,6 +27,7 @@ module.exports = {
     new webpack.LoaderOptionsPlugin({
       minimize: true,
     }),
+    new ExtractTextPlugin('styles.css'),
   ],
   resolve: {
     modules: [
@@ -38,6 +40,10 @@ module.exports = {
     rules: [{
       test: /\.js$/,
       loader: 'babel-loader',
+      exclude: /node_modules/,
+    }, {
+      test: /\.css$/,
+      loader: ExtractTextPlugin.extract('css-loader?modules&importLoaders=1'),
       exclude: /node_modules/,
     }],
   },

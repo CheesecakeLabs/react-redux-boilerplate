@@ -1,6 +1,7 @@
 const path = require('path')
 
 const webpack = require('webpack')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
@@ -21,6 +22,7 @@ module.exports = {
         DEVTOOLS_WINDOW: JSON.stringify(process.env.DEVTOOLS_WINDOW),
       },
     }),
+    new ExtractTextPlugin('styles.css'),
   ],
   resolve: {
     modules: [
@@ -36,7 +38,7 @@ module.exports = {
       exclude: /node_modules/,
     }, {
       test: /\.css$/,
-      loader: 'css-loader',
+      loader: ExtractTextPlugin.extract('css-loader?modules&importLoaders=1'),
       exclude: /node_modules/,
     }],
   },
