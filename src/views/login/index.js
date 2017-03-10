@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import ImmutablePropTypes from 'react-immutable-proptypes'
-import { Map } from 'immutable'
+import { Map, List } from 'immutable'
 
 import { login, AUTH_LOGIN } from '../../modules/auth/actions'
 
@@ -26,7 +26,10 @@ class User extends Component {
     errors: new Map(),
   }
 
-  state = {}
+  state = {
+    username: '',
+    password: '',
+  }
 
   componentWillReceiveProps({ auth }) {
     if (auth.get('key')) {
@@ -43,7 +46,7 @@ class User extends Component {
   getErrors = () => {
     const { errors, isLoading } = this.props
     if (errors.size > 0 && !isLoading) {
-      return errors.get('non_field_errors').first()
+      return errors.get('non_field_errors', new List(['unknown error'])).first()
     }
     return null
   }
