@@ -4,10 +4,10 @@ import { getActionName } from '../../utils/actions'
 
 const INITIAL_STATE = new Map({})
 
-const isPending = (actionType) => actionType.includes('PENDING')
+const isPending = (actionType) => actionType.toString().includes('PENDING')
 
 const isResponse = (actionType) =>
-  actionType.includes('FULFILLED') || actionType.includes('REJECTED')
+  actionType.toString().includes('FULFILLED') || actionType.toString().includes('REJECTED')
 
 export const loading = (state = INITIAL_STATE, action) => {
   const actionName = getActionName(action.type)
