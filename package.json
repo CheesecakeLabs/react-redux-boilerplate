@@ -13,7 +13,8 @@
     "build:server": "NODE_ENV=production webpack --progress --colors --config webpack.config.server.js --bail",
     "lint": "npm run eslint && npm run stylelint",
     "eslint": "eslint src",
-    "stylelint": "stylelint src/**/*.css"
+    "stylelint": "stylelint src/**/*.css",
+    "precommit": "npm run lint"
   },
   "babel": {
     "presets": [
@@ -49,6 +50,7 @@
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.9.0",
     "extract-text-webpack-plugin": "^2.1.0",
+    "husky": "^0.13.2",
     "redux-devtools": "^3.3.1",
     "redux-devtools-log-monitor": "^1.0.11",
     "redux-logger": "^2.6.1",
