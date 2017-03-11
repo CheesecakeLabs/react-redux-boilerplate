@@ -1,0 +1,32 @@
+machine:
+  node:
+    version: 6
+  services:
+    - docker
+
+dependencies:
+  pre:
+    - pip install ecs-deploy
+
+test:
+  pre:
+    - npm run lint
+
+deployment:
+   production:
+       tag: /v[0-9]+(\.[0-9]+)*(-\w+)?/
+       commands:
+           - eval $(aws ecr get-login --region us-west-2 | sed 's|https://||')
+           - docker build -t $DOCKER_TAG --rm=false .
+           - docker tag $DOCKER_TAG:latest $AWS_SERVER:$CIRCLE_TAG
+           - docker push $AWS_SERVER:$CIRCLE_TAG
+           - ecs deploy $AWS_CLUSTER $AWS_SERVICE -t $CIRCLE_TAG --timeout $AWS_ECS_TIMEOUT
+
+   development:
+       branch: master
+       commands:
+           - eval $(aws ecr get-login --region us-west-2 | sed 's|https://||')
+           - docker build -t $DOCKER_TAG --rm=false .
+           - docker tag $DOCKER_TAG:latest $AWS_SERVER:$AWS_TAG_DEV
+           - docker push $AWS_SERVER:$AWS_TAG_DEV
+           - ecs deploy $AWS_CLUSTER $AWS_SERVICE_STAGING -t $AWS_TAG_DEV --timeout $AWS_ECS_TIMEOUT
