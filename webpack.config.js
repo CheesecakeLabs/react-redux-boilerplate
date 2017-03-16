@@ -38,8 +38,13 @@ module.exports = {
       exclude: /node_modules/,
     }, {
       test: /\.css$/,
-      loader: ExtractTextPlugin.extract('css-loader?modules&importLoaders=1'),
-      exclude: /node_modules/,
+      loader: ExtractTextPlugin.extract({
+        fallbackLoader: 'style-loader',
+        loader: [
+          { loader: 'css-loader', query: { modules: true, importLoaders: 2, localIdentName: '[name]--[local]' } },
+          { loader: 'postcss-loader' },
+        ],
+      }),
     }],
   },
 }

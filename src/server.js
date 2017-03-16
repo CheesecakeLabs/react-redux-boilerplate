@@ -4,6 +4,7 @@ import { renderToString } from 'react-dom/server'
 import { match, RouterContext } from 'react-router'
 import { Provider } from 'react-redux'
 
+import './bootstrap'
 import './utils/server-status'
 import baseHTML from './index.html'
 import routes from './routes'
