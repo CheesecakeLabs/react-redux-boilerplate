@@ -25,7 +25,7 @@ class Home extends PureComponent {
   render() {
     const { counter } = this.state
     return (
-      <div>
+      <div className={styles.grid}>
         <Button btnClicked={this.incrementCounter}>Increment</Button>
         {<div className={styles.counter}>{counter}</div>}
         <Button btnClicked={this.decrementCounter}>Decrement</Button>
