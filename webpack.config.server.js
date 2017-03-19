@@ -34,12 +34,31 @@ module.exports = {
       },
     }, {
       test: /\.css$/,
+      include: /node_modules/,
       loader: ExtractTextPlugin.extract({
         fallback: 'style-loader',
-        use: [
-          { loader: 'css-loader', query: { modules: true, importLoaders: 2, localIdentName: '[name]--[local]' } },
-          { loader: 'postcss-loader' },
-        ],
+        use: [{
+          loader: 'css-loader',
+          options: {
+            modules: false,
+          },
+        }],
+      }),
+    }, {
+      test: /\.css$/,
+      exclude: /node_modules/,
+      loader: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: [{
+          loader: 'css-loader',
+          options: {
+            modules: true,
+            importLoaders: 2,
+            localIdentName: '[name]__[local]___[hash:base64:5]',
+          },
+        }, {
+          loader: 'postcss-loader',
+        }],
       }),
     }],
   },

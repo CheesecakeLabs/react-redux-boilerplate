@@ -22,6 +22,13 @@ app.use(webpackDevMiddleware(compiler, {
 
 app.use(webpackHotMiddleware(compiler))
 
+// index.html links to 2 <script> files,
+// one has to be ignored when developing (yarn dev)
+// that's why we route one of them to 404
+app.get('/static/404', (req, res) => {
+  res.status(404).send('')
+})
+
 app.get('*', (req, res) => {
   res.send(baseHTML())
 })

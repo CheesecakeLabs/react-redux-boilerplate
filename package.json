@@ -8,10 +8,11 @@
   "scripts": {
     "start": "node dist-server/server.js",
     "dev": "NODE_ENV=development PORT=5000 node server.js",
-    "build": "NODE_ENV=production npm run build:server && npm run build:client",
-    "build:client": "NODE_ENV=production webpack --colors --config webpack.config.production.js",
-    "build:server": "NODE_ENV=production webpack --colors --config webpack.config.server.js",
-    "build:vendor": "NODE_ENV=production webpack --colors --config webpack.config.vendor.js",
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "npm run build:vendor && npm run build:production",
+    "build:production": "NODE_ENV=production webpack --colors --config webpack.config.production.js --hide-modules",
+    "build:server": "NODE_ENV=production webpack --colors --config webpack.config.server.js --hide-modules",
+    "build:vendor": "NODE_ENV=production webpack --colors --config webpack.config.vendor.js --hide-modules",
     "lint": "npm run eslint && npm run stylelint",
     "eslint": "eslint src",
     "stylelint": "stylelint src/**/*.css",
@@ -67,7 +68,8 @@
     "stylelint-config-standard": "^16.0.0",
     "webpack": "^2.2.0",
     "webpack-dev-middleware": "^1.6.1",
-    "webpack-hot-middleware": "^2.10.0"
+    "webpack-hot-middleware": "^2.10.0",
+    "webpack-manifest-plugin": "^1.1.0"
   },
   "dependencies": {
     "@ckldeveloper/fetch": "^1.0.2",

@@ -2,14 +2,17 @@ const path = require('path')
 
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const CompressionPlugin = require('compression-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin')
+const ManifestPlugin = require('webpack-manifest-plugin')
+
+const vendorManifest = require('./dist/vendor-manifest.json')
 
 module.exports = {
   devtool: 'source-map',
-  entry: './src/index',
+  entry: { production: './src/index' },
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: '[name].[chunkhash].js',
     publicPath: '/static/',
   },
   plugins: [
@@ -25,18 +28,18 @@ module.exports = {
         warnings: false,
       },
     }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true,
-    }),
-    new ExtractTextPlugin('styles.css'),
+    new ExtractTextPlugin('[name].[chunkhash].css'),
     new webpack.DllReferencePlugin({
       context: '.',
-      manifest: require('./dist/vendor-manifest.json'),
+      manifest: vendorManifest,
     }),
     new CompressionPlugin({
       test: /\.(js|css)$/,
       threshold: 10240,
-    })
+    }),
+    new ManifestPlugin({
+      fileName: 'production.stats.json',
+    }),
   ],
   resolve: {
     modules: [
@@ -52,12 +55,33 @@ module.exports = {
       exclude: /node_modules/,
     }, {
       test: /\.css$/,
+      include: /node_modules/,
       loader: ExtractTextPlugin.extract({
         fallback: 'style-loader',
-        use: [
-          { loader: 'css-loader', query: { modules: true, importLoaders: 2, localIdentName: '[name]--[local]' } },
-          { loader: 'postcss-loader' },
-        ],
+        use: [{
+          loader: 'css-loader',
+          options: {
+            modules: false,
+            minimize: true,
+          },
+        }],
+      }),
+    }, {
+      test: /\.css$/,
+      exclude: /node_modules/,
+      loader: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: [{
+          loader: 'css-loader',
+          options: {
+            modules: true,
+            minimize: true,
+            importLoaders: 2,
+            localIdentName: '[name]__[local]___[hash:base64:5]',
+          },
+        }, {
+          loader: 'postcss-loader',
+        }],
       }),
     }],
   },

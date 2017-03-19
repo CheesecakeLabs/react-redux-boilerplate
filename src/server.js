@@ -7,27 +7,14 @@ import expressStaticGzip from 'express-static-gzip'
 
 import './bootstrap'
 import './utils/server-status'
+import { assetsPaths, getStatus } from './utils/server'
 import baseHTML from './index.html'
 import routes from './routes'
 import configureStore from './store/configure-store.prod'
 import InternalServerError from './views/internal-server-error'
 
 const port = process.env.PORT || 3000
-
 const app = express()
-
-const getStatus = (err, props) => {
-  if (err) {
-    return 500
-  }
-
-  const isNotFound = props.routes.find((route) => route.path === '*')
-  if (props && !isNotFound) {
-    return 200
-  }
-
-  return 404
-}
 
 // Ideally, you'd have a proxy server (like nginx) serving /static files
 app.use('/static', expressStaticGzip('dist'))
@@ -44,12 +31,12 @@ app.get('*', (req, res) => {
             <RouterContext {...props} />
           </Provider>,
         )
-        res.status(getStatus(err, props)).send(baseHTML(appHtml))
+        res.status(getStatus(err, props)).send(baseHTML(appHtml, assetsPaths))
       } catch (e) {
         // We should dump this error to a logging service (like Sentry)
         console.warn('render error:\n', e, '\n\n')
         const appHtml = renderToString(<Provider store={store}><InternalServerError /></Provider>)
-        res.status(500).send(baseHTML(appHtml))
+        res.status(500).send(baseHTML(appHtml, assetsPaths))
       }
     }
   })
