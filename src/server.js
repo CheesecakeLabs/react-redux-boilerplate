@@ -3,6 +3,7 @@ import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { match, RouterContext } from 'react-router'
 import { Provider } from 'react-redux'
+import expressStaticGzip from 'express-static-gzip'
 
 import './bootstrap'
 import './utils/server-status'
@@ -29,7 +30,7 @@ const getStatus = (err, props) => {
 }
 
 // Ideally, you'd have a proxy server (like nginx) serving /static files
-app.use('/static', express.static('dist'))
+app.use('/static', expressStaticGzip('dist'))
 
 app.get('*', (req, res) => {
   match({ routes, location: req.url }, (err, redirect, props) => {

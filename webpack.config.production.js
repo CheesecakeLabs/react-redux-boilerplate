@@ -2,6 +2,7 @@ const path = require('path')
 
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
   devtool: 'source-map',
@@ -28,6 +29,14 @@ module.exports = {
       minimize: true,
     }),
     new ExtractTextPlugin('styles.css'),
+    new webpack.DllReferencePlugin({
+      context: '.',
+      manifest: require('./dist/vendor-manifest.json'),
+    }),
+    new CompressionPlugin({
+      test: /\.(js|css)$/,
+      threshold: 10240,
+    })
   ],
   resolve: {
     modules: [
@@ -44,8 +53,8 @@ module.exports = {
     }, {
       test: /\.css$/,
       loader: ExtractTextPlugin.extract({
-        fallbackLoader: 'style-loader',
-        loader: [
+        fallback: 'style-loader',
+        use: [
           { loader: 'css-loader', query: { modules: true, importLoaders: 2, localIdentName: '[name]--[local]' } },
           { loader: 'postcss-loader' },
         ],

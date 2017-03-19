@@ -9,6 +9,7 @@ module.exports = (initialHtml = '') => `<!doctype html>
 </head>
 <body>
   <div id="root">${initialHtml}</div>
+  <script src="/static/vendor.bundle.js"></script>
   <script src="/static/bundle.js"></script>
 </body>
 </html>
