@@ -11,5 +11,6 @@ export const getUser = (user) => ({
 
 export const getMembers = (org) => ({
   type: GET_MEMBERS,
-  payload: getOrgMembers(org).then((payload) => ({ payload, org })),
+  payload: getOrgMembers(org),
+  meta: { org },
 })
