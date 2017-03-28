@@ -5,10 +5,12 @@ import { List } from 'immutable'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 
 import { getMembers } from '../../modules/user/actions'
+import { getUsersFromOrg } from '../../modules/user/selectors'
 
-const mapStateToProps = ({ member }, { params }) => ({
-  members: member.get(params.org),
+const mapStateToProps = (state, { params }) => ({
+  members: getUsersFromOrg(state, params.org),
 })
+
 const mapDispatchToProps = { getMembers }
 
 class Github extends Component {
@@ -50,6 +52,10 @@ class Github extends Component {
     const { members, children } = this.props
     return (
       <div>
+        <ul>
+          <li><Link to="/github/facebook">facebook</Link></li>
+          <li><Link to="/github/cheesecakelabs">cheesecakelabs</Link></li>
+        </ul>
         <p>{members.map(this.renderMember)}</p>
         {children}
       </div>
