@@ -1,15 +1,20 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import ImmutablePropTypes from 'react-immutable-proptypes'
-import { Map, List } from 'immutable'
+import { Map, List, fromJS } from 'immutable'
+import { browserHistory } from 'react-router'
 
 import { login, AUTH_LOGIN } from '../../modules/auth/actions'
 
-const mapStateToProps = ({ loading, error, auth }) => ({
-  isLoading: loading.get(AUTH_LOGIN.ACTION),
-  errors: error.get(AUTH_LOGIN.ACTION),
-  auth,
-})
+const mapStateToProps = ({ loading, error, auth, routing }) => {
+  const nextRoute = fromJS(routing).getIn(['locationBeforeTransitions', 'state', 'next'])
+  return {
+    isLoading: loading.get(AUTH_LOGIN.ACTION),
+    errors: error.get(AUTH_LOGIN.ACTION),
+    auth,
+    nextRoute: nextRoute && nextRoute.toJS(),
+  }
+}
 
 const mapDispatchToProps = { login }
 
@@ -18,12 +23,17 @@ class User extends Component {
     login: PropTypes.func,
     isLoading: PropTypes.bool,
     errors: ImmutablePropTypes.map,
+    nextRoute: PropTypes.shape({
+      pathname: PropTypes.string,
+      query: PropTypes.object,
+    }),
   }
 
   static defaultProps = {
     login: () => {},
     isLoading: false,
     errors: new Map(),
+    nextRoute: undefined,
   }
 
   state = {
@@ -31,9 +41,12 @@ class User extends Component {
     password: '',
   }
 
-  componentWillReceiveProps({ auth }) {
+  componentWillReceiveProps({ auth, nextRoute }) {
     if (auth.get('key')) {
       console.info('🙋 parabéns!')
+      if (nextRoute) {
+        browserHistory.replace(nextRoute)
+      }
     }
   }
 

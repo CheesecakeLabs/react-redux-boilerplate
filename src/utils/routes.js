@@ -1,11 +1,16 @@
-export const isLoggedIn = (user) => user && !!user.get('auth_token')
+export const isLoggedIn = (auth) => auth && !!auth.get('key')
 
 export const userLoginRequired = (store) => (nextState, replace) => {
-  const user = store.getState().user
-  if (!isLoggedIn(user)) {
+  const auth = store.getState().auth
+  if (!isLoggedIn(auth)) {
     replace({
       pathname: '/login',
-      state: { nextPathname: nextState.location.pathname },
+      state: {
+        next: {
+          pathname: nextState.location.pathname,
+          query: nextState.location.query,
+        },
+      },
     })
   }
 }
