@@ -11,7 +11,6 @@ import { assetsPaths, getStatus } from './utils/server'
 import baseHTML from './index.html'
 import routes from './routes'
 import configureStore from './store/configure-store.prod'
-import InternalServerError from './views/internal-server-error'
 
 const port = process.env.PORT || 3000
 const app = express()
@@ -20,11 +19,11 @@ const app = express()
 app.use('/static', expressStaticGzip('dist'))
 
 app.get('*', (req, res) => {
-  match({ routes, location: req.url }, (err, redirect, props) => {
+  const store = configureStore()
+  match({ routes: routes(store), location: req.url }, (err, redirect, props) => {
     if (redirect && !err) {
       res.redirect(redirect.pathname + redirect.search)
     } else {
-      const store = configureStore()
       try {
         const appHtml = renderToString(
           <Provider store={store}>
@@ -35,8 +34,7 @@ app.get('*', (req, res) => {
       } catch (e) {
         // We should dump this error to a logging service (like Sentry)
         console.warn('render error:\n', e, '\n\n')
-        const appHtml = renderToString(<Provider store={store}><InternalServerError /></Provider>)
-        res.status(500).send(baseHTML(appHtml, assetsPaths))
+        res.status(500).send(baseHTML('', {}, assetsPaths))
       }
     }
   })

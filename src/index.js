@@ -13,7 +13,7 @@ const history = syncHistoryWithStore(browserHistory, store)
 
 const Root = () => (
   <Provider store={store}>
-    <Router history={history} routes={routes} />
+    <Router history={history} routes={routes(store)} />
   </Provider>
 )
 
