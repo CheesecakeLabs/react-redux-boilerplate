@@ -15,7 +15,7 @@
     "build:vendor": "NODE_ENV=production webpack --colors --config webpack.config.vendor.js --hide-modules",
     "lint": "yarn eslint && yarn stylelint",
     "eslint": "eslint src",
-    "stylelint": "stylelint src/**/*.css",
+    "stylelint": "stylelint 'src/**/*.css'",
     "precommit": "yarn lint"
   },
   "babel": {
