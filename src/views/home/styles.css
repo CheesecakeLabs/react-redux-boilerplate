@@ -3,5 +3,5 @@
 }
 
 .grid {
-  composes: Grid Grid--alignCenter Grid--equalHeight from '../../styles/grid.css'
+  composes: Grid Grid--alignCenter Grid--equalHeight from '../../styles/grid.css';
 }
