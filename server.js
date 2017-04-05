@@ -33,11 +33,11 @@ app.get('*', (req, res) => {
   res.send(baseHTML())
 })
 
-app.listen(port, 'localhost', (err) => {
+app.listen(port, '0.0.0.0', (err) => {
   if (err) {
     console.warn(err)
     return
   }
 
-  console.info(`Listening at http://localhost:${port}`)
+  console.info(`Listening at http://0.0.0.0:${port}`)
 })
