@@ -3,13 +3,9 @@ import thunk from 'redux-thunk'
 import { browserHistory } from 'react-router'
 import promise from 'redux-promise-middleware'
 import { routerMiddleware } from 'react-router-redux'
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { persistState } from 'redux-devtools'
-// eslint-disable-next-line import/no-extraneous-dependencies
 import createLogger from 'redux-logger'
 
 import rootReducer from '../modules/reducers'
-import DevTools from '../utils/dev-tools/dev-tools'
 import errorMiddleware from '../middleware/error-middleware'
 
 const logger = createLogger({
@@ -33,12 +29,6 @@ const configureStore = (preloadedState) => {
         promise(),
         router,
         logger,
-      ),
-      DevTools.instrument(),
-      persistState(
-        window.location.href.match(
-          /[?&]debug_session=([^&]+)\b/,
-        ),
       ),
     ),
   )

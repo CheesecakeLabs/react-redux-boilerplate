@@ -1,9 +1,6 @@
 const express = require('express')
-// eslint-disable-next-line import/no-extraneous-dependencies
 const webpack = require('webpack')
-// eslint-disable-next-line import/no-extraneous-dependencies
 const webpackDevMiddleware = require('webpack-dev-middleware')
-// eslint-disable-next-line import/no-extraneous-dependencies
 const webpackHotMiddleware = require('webpack-hot-middleware')
 
 const config = require('./webpack.config')
