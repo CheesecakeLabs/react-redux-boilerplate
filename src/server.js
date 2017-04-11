@@ -4,16 +4,18 @@ import { renderToString } from 'react-dom/server'
 import { match, RouterContext } from 'react-router'
 import { Provider } from 'react-redux'
 import expressStaticGzip from 'express-static-gzip'
+import { serverStatus, getStatus } from '@cheesecakelabs/boilerplate/utils'
 
 import './bootstrap'
-import './utils/server-status'
-import { assetsPaths, getStatus } from './utils/server'
+import { assetsPaths } from './utils/server'
 import baseHTML from './index.html'
 import routes from './routes'
 import configureStore from './store/configure-store.prod'
 
 const port = process.env.PORT || 3000
 const app = express()
+
+serverStatus()
 
 // Ideally, you'd have a proxy server (like nginx) serving /static files
 app.use('/static', expressStaticGzip('dist'))

@@ -2,9 +2,13 @@
 # yarn lockfile v1
 
 
-"@ckldeveloper/fetch@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@ckldeveloper/fetch/-/fetch-2.0.0.tgz#7974f4ea10afc6c760bd2fcb2b991953a4089674"
+"@cheesecakelabs/boilerplate@^0.0.0":
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/@cheesecakelabs/boilerplate/-/boilerplate-0.0.0.tgz#1bce274e79c89d341fda370afd9a3475c9067a85"
+
+"@cheesecakelabs/fetch@^2.0.0":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@cheesecakelabs/fetch/-/fetch-2.0.2.tgz#59988dd7333bc90133830c03fc929848f0575252"
   dependencies:
     normalize-url "^1.9.0"
     unfetch "^2.1.2"
@@ -1613,13 +1617,13 @@ date-now@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/date-now/-/date-now-0.1.4.tgz#eaf439fd4d4848ad74e5cc7dbef200672b9e345b"
 
-debug@2.2.0, debug@~2.2.0:
+debug@2.2.0, debug@^2.1.1, debug@^2.2.0, debug@~2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.2.0.tgz#f87057e995b1a1f6ae6a4960664137bc56f039da"
   dependencies:
     ms "0.7.1"
 
-debug@^2.1.1, debug@^2.2.0, debug@^2.6.0:
+debug@^2.6.0:
   version "2.6.3"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.3.tgz#0f7eb8c30965ec08c72accfa0130c8b79984141d"
   dependencies:

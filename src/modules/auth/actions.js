@@ -1,4 +1,5 @@
-import { defineAction } from '../../utils/define-action'
+import { defineAction } from '@cheesecakelabs/boilerplate/utils'
+
 import * as authService from '../../services/auth'
 
 export const AUTH_LOGIN = defineAction('AUTH_LOGIN')

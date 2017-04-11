@@ -5,7 +5,7 @@ const ManifestPlugin = require('webpack-manifest-plugin')
 module.exports = {
   entry: {
     vendor: [
-      '@ckldeveloper/fetch',
+      '@cheesecakelabs/fetch',
       'immutable',
       'react',
       'react-dom',
