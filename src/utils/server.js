@@ -1,5 +1,5 @@
-import vendorStats from '../../dist/vendor.stats.json'
-import clientStats from '../../dist/production.stats.json'
+import vendorStats from '../../dist/vendor.stats.json' // eslint-disable-line import/no-unresolved
+import clientStats from '../../dist/production.stats.json' // eslint-disable-line import/no-unresolved
 
 export const assetsPaths = {
   vendor: vendorStats['vendor.js'],
