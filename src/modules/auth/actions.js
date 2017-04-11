@@ -1,4 +1,5 @@
-import { defineAction } from '../../utils/define-action'
+import { defineAction } from '@ckldeveloper/boilerplate/utils/define-action'
+
 import * as authService from '../../services/auth'
 
 export const AUTH_LOGIN = defineAction('AUTH_LOGIN')

@@ -1,10 +1,9 @@
 import { combineReducers } from 'redux'
 import { routerReducer as routing } from 'react-router-redux'
+import { error, loading } from '@ckldeveloper/boilerplate/reducers'
 
 import { user, org } from './user/reducers'
 import { auth } from './auth/reducers'
-import { error } from './error/reducers'
-import { loading } from './loading/reducers'
 
 const rootReducer = combineReducers({
   routing,

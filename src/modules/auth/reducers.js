@@ -1,6 +1,5 @@
 import { Map, fromJS } from 'immutable'
-
-import createReducer from '../../utils/create-reducer'
+import { createReducer } from '@ckldeveloper/boilerplate/utils'
 
 import { AUTH_LOGIN } from './actions'
 
