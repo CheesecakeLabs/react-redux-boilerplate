@@ -1,4 +1,5 @@
-import { defineAction } from '../../utils/define-action'
+import { defineAction } from '@ckldeveloper/boilerplate/utils/define-action'
+
 import { get, getOrgMembers } from '../../services/user'
 
 export const GET_USER = defineAction('GET_USER')

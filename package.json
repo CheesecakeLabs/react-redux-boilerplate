@@ -72,6 +72,7 @@
     "webpack-manifest-plugin": "^1.1.0"
   },
   "dependencies": {
+    "@ckldeveloper/boilerplate": "file:/Users/iacami/dev/rrb/boilerplate-utils/build",
     "@ckldeveloper/fetch": "^2.0.0",
     "express": "^4.14.0",
     "express-static-gzip": "^0.2.2",

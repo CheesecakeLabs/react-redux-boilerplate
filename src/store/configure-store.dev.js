@@ -4,9 +4,9 @@ import { browserHistory } from 'react-router'
 import promise from 'redux-promise-middleware'
 import { routerMiddleware } from 'react-router-redux'
 import createLogger from 'redux-logger'
+import { errorMiddleware } from '@ckldeveloper/boilerplate/middlewares'
 
 import rootReducer from '../modules/reducers'
-import errorMiddleware from '../middleware/error-middleware'
 
 const logger = createLogger({
   level: 'info',

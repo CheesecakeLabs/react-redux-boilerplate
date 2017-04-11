@@ -1,7 +1,6 @@
 import { Map, fromJS } from 'immutable'
 import { normalize, schema } from 'normalizr'
-
-import createReducer from '../../utils/create-reducer'
+import { createReducer } from '@ckldeveloper/boilerplate/utils'
 
 import { GET_USER, GET_MEMBERS } from './actions'
 
