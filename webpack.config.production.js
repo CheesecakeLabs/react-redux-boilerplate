@@ -5,7 +5,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
 const ManifestPlugin = require('webpack-manifest-plugin')
 
-const vendorManifest = require('./dist/vendor-manifest.json')
+const vendorManifest = require('./dist/vendor-manifest.json') // eslint-disable-line import/no-unresolved
 
 module.exports = {
   devtool: 'source-map',
