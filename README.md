@@ -10,12 +10,6 @@ Boilerplate project for a webapp using React/Redux architecture.
    modules/counter
    views/home
    routes.js
-1. Run `npm install`
-1. Run `npm run dev`
-1. Your application is running on http://localhost:ENV.PORT || 5000
-
-
-## Roadmap
-- Use webpack DLL, split vendor from local code
-- Use dummy loaders on webpack.server so it builds faster
-- Hashify bundle to invalidate cache, add bundle <script> dynamically
+1. Run `yarn`
+1. Run `yarn dev`
+1. Your application is running on http://localhost:ENV.PORT || 3000
