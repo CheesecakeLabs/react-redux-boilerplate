@@ -1,4 +1,6 @@
 # react-redux-boilerplate
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/CheesecakeLabs/react-redux-boilerplate.svg)](https://greenkeeper.io/)
 Boilerplate project for a webapp using React/Redux architecture.
 
 
