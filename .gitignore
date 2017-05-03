@@ -4,3 +4,4 @@ node_modules
 .nyc_output
 dist
 dist-server
+tests/__tests__
