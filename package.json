@@ -7,6 +7,10 @@
   "repository": "CheesecakeLabs/react-redux-boilerplate",
   "scripts": {
     "start": "node dist-server/server.js",
+    "test": "yarn lint && yarn generate-view-tests && yarn jest",
+    "generate-view-tests": "rm -fr ./tests/__tests__ && generate-view-tests",
+    "tdd": "yarn jest --  --watch",
+    "jest": "NODE_ENV=test jest",
     "dev": "NODE_ENV=development PORT=5000 node server.js",
     "build": "yarn build:client && yarn build:server",
     "build:client": "yarn build:vendor && yarn build:production",
@@ -14,33 +18,39 @@
     "build:server": "NODE_ENV=production webpack --colors --config webpack.config.server.js --hide-modules",
     "build:vendor": "NODE_ENV=production webpack --colors --config webpack.config.vendor.js --hide-modules",
     "lint": "yarn eslint && yarn stylelint",
-    "eslint": "eslint src *.js",
+    "eslint": "eslint src stories tests *.js",
     "stylelint": "stylelint 'src/**/*.css'",
-    "precommit": "yarn lint"
+    "precommit": "yarn lint",
+    "prepush": "npm test"
   },
-  "babel": {
-    "presets": [
-      [
-        "es2015",
-        {
-          "modules": false
-        }
-      ],
-      "stage-0",
-      "react"
+  "jest": {
+    "verbose": false,
+    "transform": {
+      ".*": "babel-jest"
+    },
+    "moduleNameMapper": {
+      "^.+\\.(css)$": "identity-obj-proxy",
+      "^.+\\.(png|svg|txt)$": "<rootDir>/tests/empty-module.js"
+    },
+    "moduleFileExtensions": [
+      "js"
     ],
-    "env": {
-      "development": {
-        "presets": [
-          "react-hmre"
-        ]
-      }
-    }
+    "setupFiles": [
+      "./tests/config.test.js"
+    ],
+    "testPathIgnorePatterns": [
+      "./tests/config.test.js",
+      "<rootDir>[/\\\\](dist|dist-server|node_modules|.storybook)[/\\\\]"
+    ],
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
+    ]
   },
   "devDependencies": {
     "autoprefixer": "^6.7.7",
     "babel-cli": "^6.22.2",
     "babel-eslint": "^7.2.3",
+    "babel-jest": "^19.0.0",
     "babel-loader": "^6.2.10",
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-react": "^6.22.0",
@@ -49,16 +59,19 @@
     "babel-register": "^6.9.0",
     "compression-webpack-plugin": "^0.3.2",
     "css-loader": "^0.26.2",
+    "enzyme": "^2.8.2",
     "eslint": "^3.19.0",
     "eslint-config-cheesecakelabs": "^0.2.0",
     "extract-text-webpack-plugin": "^2.1.0",
     "husky": "^0.13.2",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^19.0.2",
     "postcss-css-variables": "^0.7.0",
     "postcss-import": "^9.1.0",
     "postcss-loader": "^1.3.3",
     "postcss-nested": "^1.0.0",
-    "redux-devtools": "^3.3.1",
-    "redux-devtools-log-monitor": "^1.0.11",
+    "react-addons-test-utils": "^15.5.1",
+    "react-test-renderer": "^15.5.4",
     "redux-logger": "^2.6.1",
     "style-loader": "^0.14.1",
     "stylelint": "^7.10.1",
@@ -70,20 +83,21 @@
   },
   "dependencies": {
     "@cheesecakelabs/boilerplate": "^0.3.0",
-    "@cheesecakelabs/fetch": "^2.0.0",
-    "express": "^4.14.0",
+    "@cheesecakelabs/fetch": "^2.0.2",
+    "express": "^4.15.2",
     "express-static-gzip": "^0.2.2",
     "immutable": "^3.8.1",
-    "normalize.css": "^5.0.0",
+    "normalize.css": "^7.0.0",
     "normalizr": "^3.2.2",
-    "react": "^15.1.0",
-    "react-dom": "^15.1.0",
+    "prop-types": "^15.5.8",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
     "react-immutable-proptypes": "^2.1.0",
-    "react-redux": "^5.0.2",
-    "react-router": "^3.0.2",
-    "react-router-redux": "^4.0.5",
-    "redux": "^3.5.2",
-    "redux-define": "^1.1.0",
+    "react-redux": "^5.0.4",
+    "react-router": "^3.0.5",
+    "react-router-redux": "^4.0.8",
+    "redux": "^3.6.0",
+    "redux-define": "^1.1.1",
     "redux-promise-middleware": "^4.2.0",
     "redux-thunk": "^2.1.0",
     "reselect": "^3.0.0",
