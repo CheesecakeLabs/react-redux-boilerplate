@@ -66,6 +66,7 @@
     "husky": "^0.13.2",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^19.0.2",
+    "jest-junit": "^1.5.1",
     "postcss-css-variables": "^0.7.0",
     "postcss-import": "^9.1.0",
     "postcss-loader": "^1.3.3",

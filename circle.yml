@@ -14,7 +14,7 @@ test:
   pre:
     - yarn lint
   override:
-    - yarn test
+    - JEST_JUNIT_OUTPUT="$CIRCLE_TEST_REPORTS/junit.xml" yarn jest -- -w 1 --testResultsProcessor jest-junit
 
 deployment:
   production:
