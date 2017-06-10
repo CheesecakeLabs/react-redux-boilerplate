@@ -3,6 +3,7 @@ const path = require('path')
 const webpack = require('webpack')
 const CompressionPlugin = require('compression-webpack-plugin')
 const ManifestPlugin = require('webpack-manifest-plugin')
+
 module.exports = {
   entry: {
     vendor: [
