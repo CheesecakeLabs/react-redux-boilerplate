@@ -1,7 +1,8 @@
+const path = require('path')
+
 const webpack = require('webpack')
 const CompressionPlugin = require('compression-webpack-plugin')
 const ManifestPlugin = require('webpack-manifest-plugin')
-
 module.exports = {
   entry: {
     vendor: [
@@ -22,7 +23,7 @@ module.exports = {
 
   output: {
     filename: '[name].[chunkhash].js',
-    path: 'dist/',
+    path: path.join(__dirname, 'dist'),
     library: '[name]_lib',
   },
 
