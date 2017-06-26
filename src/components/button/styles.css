@@ -44,9 +44,6 @@
 .default {
   border: 1px solid #ddd;
   border-radius: 3px;
-  background: #fefefe;
-  background: -moz-linear-gradient(top, #fefefe 0%, #ddd 100%);
-  background: -webkit-linear-gradient(top, #fefefe 0%, #ddd 100%);
   background: linear-gradient(to bottom, #fefefe 0%, #ddd 100%);
 }
 
@@ -57,18 +54,12 @@
 
 .default:active {
   border-color: #aaa;
-  background: #ddd;
-  background: -moz-linear-gradient(top, #bbb 0%, #ddd 44%);
-  background: -webkit-linear-gradient(top, #bbb 0%, #ddd 44%);
   background: linear-gradient(to bottom, #bbb 0%, #ddd 44%);
 }
 
 .positive {
   border: 1px solid #569e3d;
   border-radius: 3px;
-  background: #79d858;
-  background: -moz-linear-gradient(top, #79d858 0%, #569e3d 100%);
-  background: -webkit-linear-gradient(top, #79d858 0%, #569e3d 100%);
   background: linear-gradient(to bottom, #79d858 0%, #569e3d 100%);
   color: #fff;
 }
@@ -80,9 +71,6 @@
 
 .positive:active {
   border-color: #418737;
-  background: #569e3d;
-  background: -moz-linear-gradient(top, #418737 0%, #569e3d 44%);
-  background: -webkit-linear-gradient(top, #418737 0%, #569e3d 44%);
   background: linear-gradient(to bottom, #418737 0%, #569e3d 44%);
 }
 
