@@ -27,25 +27,37 @@ class Home extends PureComponent {
     return (
       <div>
         <div className={styles.grid}>
-          <div class={styles.grid_cel}>
-            <Button type={ButtonType.BUTTON} theme={ButtonTheme.POSITIVE} onClick={this.incrementCounter}>Increment</Button>
+          <div>
+            <Button
+              type={ButtonType.BUTTON}
+              theme={ButtonTheme.POSITIVE}
+              onClick={this.incrementCounter}
+            >
+              Increment
+            </Button>
           </div>
-          <div class={styles.grid_cel}>
+          <div>
             {<div className={styles.counter}>{counter}</div>}
           </div>
-          <div class={styles.grid_cel}>
-            <Button type={ButtonType.BUTTON} theme={ButtonTheme.DANGER} onClick={this.decrementCounter}>Decrement</Button>
+          <div>
+            <Button
+              type={ButtonType.BUTTON}
+              theme={ButtonTheme.DANGER}
+              onClick={this.decrementCounter}
+            >
+              Decrement
+            </Button>
           </div>
         </div>
-        <br/>
+        <br />
         <div className={styles.grid}>
-          <div class={styles.grid_cel}>
+          <div>
             <Button>Default</Button>
           </div>
-          <div class={styles.grid_cel}>
+          <div>
             <Button size={ButtonSize.SMALL}>Small</Button>
           </div>
-          <div class={styles.grid_cel}>
+          <div>
             <Button size={ButtonSize.LARGE}>Larger</Button>
           </div>
         </div>

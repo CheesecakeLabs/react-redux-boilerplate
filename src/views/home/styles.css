@@ -7,7 +7,3 @@
 .grid {
   composes: Grid Grid--alignCenter;
 }
-
-.grid_cel {
-  composes: Grid-cell u-size1of3;
-}
