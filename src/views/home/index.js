@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 
-import Button from '../../components/button'
+import Button, { ButtonType, ButtonTheme, ButtonSize } from '../../components/button'
 
 import styles from './styles.css'
 
@@ -25,10 +25,30 @@ class Home extends PureComponent {
   render() {
     const { counter } = this.state
     return (
-      <div className={styles.grid}>
-        <Button btnClicked={this.incrementCounter}>Increment</Button>
-        {<div className={styles.counter}>{counter}</div>}
-        <Button btnClicked={this.decrementCounter}>Decrement</Button>
+      <div>
+        <div className={styles.grid}>
+          <div class={styles.grid_cel}>
+            <Button type={ButtonType.BUTTON} theme={ButtonTheme.POSITIVE} onClick={this.incrementCounter}>Increment</Button>
+          </div>
+          <div class={styles.grid_cel}>
+            {<div className={styles.counter}>{counter}</div>}
+          </div>
+          <div class={styles.grid_cel}>
+            <Button type={ButtonType.BUTTON} theme={ButtonTheme.DANGER} onClick={this.decrementCounter}>Decrement</Button>
+          </div>
+        </div>
+        <br/>
+        <div className={styles.grid}>
+          <div class={styles.grid_cel}>
+            <Button>Default</Button>
+          </div>
+          <div class={styles.grid_cel}>
+            <Button size={ButtonSize.SMALL}>Small</Button>
+          </div>
+          <div class={styles.grid_cel}>
+            <Button size={ButtonSize.LARGE}>Larger</Button>
+          </div>
+        </div>
       </div>
     )
   }
