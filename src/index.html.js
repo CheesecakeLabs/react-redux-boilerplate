@@ -1,7 +1,7 @@
 const DEFAULT_PATHS = {
-  styles: 'styles.css',
-  production: 'bundle.js',
-  vendor: '404',
+  styles: { path: 'styles.css', sri: '' },
+  production: { path: 'bundle.js', sri: '' },
+  vendor: { path: '404', sri: '' },
 }
 
 module.exports = (initialHtml = '', paths = DEFAULT_PATHS) =>
@@ -12,11 +12,11 @@ module.exports = (initialHtml = '', paths = DEFAULT_PATHS) =>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>React Redux Boilerplate</title>
-  <link rel="stylesheet" href="/static/${paths.styles}" />
+  <link rel="stylesheet" href="/static/${paths.styles.path}" integrity="${paths.styles.sri}" />
 </head>
 <body>
   <div id="root">${initialHtml}</div>
-  <script src="/static/${paths.vendor}"></script>
-  <script src="/static/${paths.production}"></script>
+  <script src="/static/${paths.vendor.path}" integrity="${paths.vendor.sri}"></script>
+  <script src="/static/${paths.production.path}" integrity="${paths.production.sri}"></script>
 </body>
 </html>`
