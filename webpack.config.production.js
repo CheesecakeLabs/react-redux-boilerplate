@@ -16,7 +16,6 @@ module.exports = {
     publicPath: '/static/',
   },
   plugins: [
-    new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
@@ -31,7 +30,7 @@ module.exports = {
     }),
     new ExtractTextPlugin('[name].[chunkhash].css'),
     new webpack.DllReferencePlugin({
-      context: __dirname,
+      context: '.',
       manifest: vendorManifest,
     }),
     new CompressionPlugin({

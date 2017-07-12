@@ -29,7 +29,6 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
@@ -46,8 +45,7 @@ module.exports = {
       minimize: true,
     }),
     new webpack.DllPlugin({
-      path: path.join('dist', '[name]-manifest.json'),
-      context: path.join(__dirname, 'dist'),
+      path: 'dist/[name]-manifest.json',
       name: '[name]_lib',
     }),
     new CompressionPlugin({
