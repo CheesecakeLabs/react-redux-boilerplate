@@ -31,7 +31,6 @@ module.exports = {
     }),
     new ExtractTextPlugin('[name].[chunkhash].css'),
     new webpack.DllReferencePlugin({
-      context: __dirname,
       manifest: vendorManifest,
     }),
     new CompressionPlugin({

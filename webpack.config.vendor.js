@@ -47,7 +47,6 @@ module.exports = {
     }),
     new webpack.DllPlugin({
       path: path.join('dist', '[name]-manifest.json'),
-      context: path.join(__dirname, 'dist'),
       name: '[name]_lib',
     }),
     new CompressionPlugin({
