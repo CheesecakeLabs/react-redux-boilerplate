@@ -5,7 +5,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes'
 import { Map, List, fromJS } from 'immutable'
 import { browserHistory } from 'react-router'
 
-import { login, AUTH_LOGIN } from '../../modules/auth/actions'
+import { login, AUTH_LOGIN } from '_modules/auth/actions'
 
 const mapStateToProps = ({ loading, error, auth, routing }) => {
   const nextRoute = fromJS(routing).getIn(['locationBeforeTransitions', 'state', 'next'])

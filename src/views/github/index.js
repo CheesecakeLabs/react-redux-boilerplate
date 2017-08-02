@@ -5,8 +5,8 @@ import { connect } from 'react-redux'
 import { List } from 'immutable'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 
-import { getMembers } from '../../modules/user/actions'
-import { getUsersFromOrg } from '../../modules/user/selectors'
+import { getMembers } from '_modules/user/actions'
+import { getUsersFromOrg } from '_modules/user/selectors'
 
 const mapStateToProps = (state, { params }) => ({
   members: getUsersFromOrg(state, params.org),

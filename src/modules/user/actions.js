@@ -1,6 +1,6 @@
 import { defineAction } from '@cheesecakelabs/boilerplate/utils'
 
-import { get, getOrgMembers } from '../../services/user'
+import { get, getOrgMembers } from '_services/user'
 
 export const GET_USER = defineAction('GET_USER')
 export const GET_MEMBERS = defineAction('GET_MEMBERS')

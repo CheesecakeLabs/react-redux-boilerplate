@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 
-import Button, { ButtonType, ButtonTheme, ButtonSize } from '../../components/button'
+import Button, { ButtonType, ButtonTheme, ButtonSize } from '_components//button'
 
 import styles from './styles.css'
 

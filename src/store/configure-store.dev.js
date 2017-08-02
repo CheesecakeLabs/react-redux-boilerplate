@@ -6,7 +6,7 @@ import { routerMiddleware } from 'react-router-redux'
 import createLogger from 'redux-logger'
 import { errorMiddleware } from '@cheesecakelabs/boilerplate/middlewares'
 
-import rootReducer from '../modules/reducers'
+import rootReducer from '_modules/reducers'
 
 const logger = createLogger({
   level: 'info',
