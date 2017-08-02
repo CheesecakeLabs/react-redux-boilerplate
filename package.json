@@ -30,7 +30,13 @@
     },
     "moduleNameMapper": {
       "^.+\\.(css)$": "identity-obj-proxy",
-      "^.+\\.(png|svg|txt)$": "<rootDir>/tests/empty-module.js"
+      "^.+\\.(png|svg|txt)$": "<rootDir>/tests/empty-module.js",
+      "^_modules/(.*)": "<rootDir>/src/modules/$1",
+      "^_components/(.*)": "<rootDir>/src/components/$1",
+      "^_services/(.*)": "<rootDir>/src/services/$1",
+      "^_views/(.*)": "<rootDir>/src/views/$1",
+      "^_utils/(.*)": "<rootDir>/src/utils/$1",
+      "^_styles/(.*)": "<rootDir>/src/styles/$1"
     },
     "moduleFileExtensions": [
       "js"
