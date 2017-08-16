@@ -85,7 +85,7 @@
   },
   "dependencies": {
     "@cheesecakelabs/boilerplate": "^0.3.0",
-    "@cheesecakelabs/fetch": "^2.0.2",
+    "@cheesecakelabs/fetch": "^2.1.1",
     "express": "^4.15.2",
     "express-static-gzip": "^0.2.2",
     "immutable": "^3.8.1",

@@ -10,9 +10,9 @@
     mkdirp "^0.5.1"
     yargs "^7.1.0"
 
-"@cheesecakelabs/fetch@^2.0.2":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@cheesecakelabs/fetch/-/fetch-2.0.2.tgz#59988dd7333bc90133830c03fc929848f0575252"
+"@cheesecakelabs/fetch@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@cheesecakelabs/fetch/-/fetch-2.1.1.tgz#90e3686e0f714213d6a1d3949dc48724cccec66f"
   dependencies:
     normalize-url "^1.9.0"
     unfetch "^2.1.2"
@@ -5915,16 +5915,7 @@ ua-parser-js@^0.7.9:
   version "0.7.12"
   resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.12.tgz#04c81a99bdd5dc52263ea29d24c6bf8d4818a4bb"
 
-uglify-js@^2.6:
-  version "2.8.22"
-  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-2.8.22.tgz#d54934778a8da14903fa29a326fb24c0ab51a1a0"
-  dependencies:
-    source-map "~0.5.1"
-    yargs "~3.10.0"
-  optionalDependencies:
-    uglify-to-browserify "~1.0.0"
-
-uglify-js@^2.8.29:
+uglify-js@^2.6, uglify-js@^2.8.29:
   version "2.8.29"
   resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-2.8.29.tgz#29c5733148057bb4e1f75df35b7a9cb72e6a59dd"
   dependencies:
