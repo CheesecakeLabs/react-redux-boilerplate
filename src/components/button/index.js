@@ -27,9 +27,9 @@ const Button = ({ type, onClick, children, theme, size }) => {
 }
 
 Button.propTypes = {
-  type: PropTypes.oneOf(Object.keys(ButtonType)),
-  theme: PropTypes.oneOf(Object.keys(ButtonTheme)),
-  size: PropTypes.oneOf(Object.keys(ButtonSize)),
+  type: PropTypes.oneOf(Object.values(ButtonType)),
+  theme: PropTypes.oneOf(Object.values(ButtonTheme)),
+  size: PropTypes.oneOf(Object.values(ButtonSize)),
   onClick: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
 }
