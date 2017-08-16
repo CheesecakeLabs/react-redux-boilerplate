@@ -27,7 +27,7 @@ Boilerplate project for a webapp using React/Redux architecture.
 {
     "prettier_cli_path": "/usr/local/bin/prettier",
     "node_path": "/usr/local/bin/node",
-    "auto_format_on_save": false,
+    "auto_format_on_save": true,
     "allow_inline_formatting": false,
     "custom_file_extensions": [],
     "additional_cli_args": {},
@@ -35,8 +35,9 @@ Boilerplate project for a webapp using React/Redux architecture.
 
     "prettier_options": {
         "printWidth": 100,
+        "tabWidth": 2,
         "singleQuote": true,
-        "trailingComma": "all",
+        "trailingComma": "es5",
         "bracketSpacing": true,
         "jsxBracketSameLine": false,
         "parser": "babylon",
@@ -54,9 +55,9 @@ Boilerplate project for a webapp using React/Redux architecture.
   "prettier.printWidth": 100,
   "prettier.tabWidth": 2,
   "prettier.singleQuote": true,
-  "prettier.trailingComma": "all",
+  "prettier.trailingComma": "es5",
   "prettier.bracketSpacing": true,
-  "prettier.jsxBracketSameLine": true,
+  "prettier.jsxBracketSameLine": false,
   "prettier.parser": "babylon",
   "prettier.semi": false,
   "editor.formatOnSave": true,
