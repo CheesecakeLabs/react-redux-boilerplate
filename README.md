@@ -18,7 +18,7 @@ Boilerplate project for a webapp using React/Redux architecture.
 ## Prettier
 
 ### Sublime config
-https://packagecontrol.io/packages/JsPrettier
+[Package](https://packagecontrol.io/packages/JsPrettier)
 ```
 {
     "prettier_cli_path": "/usr/local/bin/prettier",
@@ -38,6 +38,26 @@ https://packagecontrol.io/packages/JsPrettier
         "parser": "babylon",
         "semi": false
     }
+}
+
+```
+
+### VSCode config
+[Package](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+```
+{
+  "prettier.eslintIntegration": true,
+  "prettier.printWidth": 100,
+  "prettier.tabWidth": 2,
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "all",
+  "prettier.bracketSpacing": true,
+  "prettier.jsxBracketSameLine": true,
+  "prettier.parser": "babylon",
+  "prettier.semi": false,
+  "editor.formatOnSave": true,
+  "typescript.check.npmIsInstalled": false,
+  "extensions.ignoreRecommendations": true
 }
 
 ```
