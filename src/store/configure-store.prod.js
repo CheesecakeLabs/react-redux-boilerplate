@@ -5,7 +5,7 @@ import { routerMiddleware } from 'react-router-redux'
 import promise from 'redux-promise-middleware'
 import { errorMiddleware } from '@cheesecakelabs/boilerplate/middlewares'
 
-import rootReducer from '../modules/reducers'
+import rootReducer from '_modules/reducers'
 
 const router = routerMiddleware(browserHistory)
 

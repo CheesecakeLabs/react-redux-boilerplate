@@ -6,6 +6,7 @@ const CompressionPlugin = require('compression-webpack-plugin')
 const ManifestPlugin = require('webpack-manifest-plugin')
 
 const vendorManifest = require('./dist/vendor-manifest.json') // eslint-disable-line import/no-unresolved
+const resolve = require('./webpack/_resolve.js')
 
 module.exports = {
   devtool: 'source-map',
@@ -41,13 +42,7 @@ module.exports = {
       fileName: 'production.stats.json',
     }),
   ],
-  resolve: {
-    modules: [
-      path.join(__dirname, 'src'),
-      'node_modules',
-    ],
-    extensions: ['.js'],
-  },
+  resolve,
   module: {
     rules: [{
       test: /\.js$/,

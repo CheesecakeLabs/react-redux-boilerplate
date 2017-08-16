@@ -30,7 +30,13 @@
     },
     "moduleNameMapper": {
       "^.+\\.(css)$": "identity-obj-proxy",
-      "^.+\\.(png|svg|txt)$": "<rootDir>/tests/empty-module.js"
+      "^.+\\.(png|svg|txt)$": "<rootDir>/tests/empty-module.js",
+      "^_modules/(.*)": "<rootDir>/src/modules/$1",
+      "^_components/(.*)": "<rootDir>/src/components/$1",
+      "^_services/(.*)": "<rootDir>/src/services/$1",
+      "^_views/(.*)": "<rootDir>/src/views/$1",
+      "^_utils/(.*)": "<rootDir>/src/utils/$1",
+      "^_styles/(.*)": "<rootDir>/src/styles/$1"
     },
     "moduleFileExtensions": [
       "js"
@@ -62,7 +68,7 @@
     "css-loader": "^0.26.2",
     "enzyme": "^2.8.2",
     "eslint": "^3.19.0",
-    "eslint-config-cheesecakelabs": "^0.2.0",
+    "eslint-config-cheesecakelabs": "^0.3.0",
     "extract-text-webpack-plugin": "^2.1.0",
     "husky": "^0.13.2",
     "identity-obj-proxy": "^3.0.0",

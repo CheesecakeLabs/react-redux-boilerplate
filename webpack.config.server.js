@@ -3,6 +3,8 @@ const path = require('path')
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
+const resolve = require('./webpack/_resolve.js')
+
 module.exports = {
   entry: './src/server.js',
   target: 'node',
@@ -11,13 +13,7 @@ module.exports = {
     filename: 'server.js',
     publicPath: '/static/',
   },
-  resolve: {
-    modules: [
-      path.join(__dirname, 'src'),
-      'node_modules',
-    ],
-    extensions: ['.js'],
-  },
+  resolve,
   plugins: [
     new webpack.DefinePlugin({
       fetch: () => new Promise(() => {}),

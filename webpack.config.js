@@ -3,6 +3,8 @@ const path = require('path')
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
+const resolve = require('./webpack/_resolve.js')
+
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: [
@@ -24,13 +26,7 @@ module.exports = {
     }),
     new ExtractTextPlugin('styles.css'),
   ],
-  resolve: {
-    modules: [
-      path.join(__dirname, 'src'),
-      'node_modules',
-    ],
-    extensions: ['.js'],
-  },
+  resolve,
   module: {
     rules: [{
       test: /\.js$/,

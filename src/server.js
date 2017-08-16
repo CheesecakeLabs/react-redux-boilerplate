@@ -6,8 +6,9 @@ import { Provider } from 'react-redux'
 import expressStaticGzip from 'express-static-gzip'
 import { serverStatus, getStatus } from '@cheesecakelabs/boilerplate/utils'
 
+import { assetsPaths } from '_utils/server'
+
 import './bootstrap'
-import { assetsPaths } from './utils/server'
 import baseHTML from './index.html'
 import routes from './routes'
 import configureStore from './store/configure-store.prod'

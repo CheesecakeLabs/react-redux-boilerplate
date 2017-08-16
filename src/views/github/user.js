@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Map } from 'immutable'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 
-import { getUser } from '../../modules/user/actions'
+import { getUser } from '_modules/user/actions'
 
 const mapStateToProps = ({ user }, { params }) => ({
   user: user.get(params.user),

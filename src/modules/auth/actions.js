@@ -1,6 +1,6 @@
 import { defineAction } from '@cheesecakelabs/boilerplate/utils'
 
-import * as authService from '../../services/auth'
+import * as authService from '_services/auth'
 
 export const AUTH_LOGIN = defineAction('AUTH_LOGIN')
 
