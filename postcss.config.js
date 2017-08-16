@@ -11,10 +11,5 @@ const postCssImport = postCSSImport({
 })
 
 module.exports = {
-  plugins: [
-    postCssImport,
-    postCSSAutoprefixer,
-    postCSSNested,
-    postCssCssVariables,
-  ],
+  plugins: [postCssImport, postCSSAutoprefixer, postCSSNested, postCssCssVariables],
 }

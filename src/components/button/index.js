@@ -23,7 +23,11 @@ export const ButtonSize = {
 
 const Button = ({ type, onClick, children, theme, size }) => {
   const className = `${styles.button} ${styles[theme]} ${styles[size]}`
-  return (<button type={type} onClick={onClick} className={className}>{children}</button>)
+  return (
+    <button type={type} onClick={onClick} className={className}>
+      {children}
+    </button>
+  )
 }
 
 Button.propTypes = {

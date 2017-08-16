@@ -16,11 +16,13 @@ const mapDispatchToProps = { getMembers }
 
 class Github extends Component {
   static propTypes = {
-    members: ImmutablePropTypes.listOf(ImmutablePropTypes.contains({
-      avatar_url: PropTypes.string,
-      login: PropTypes.string,
-      name: PropTypes.string,
-    })),
+    members: ImmutablePropTypes.listOf(
+      ImmutablePropTypes.contains({
+        avatar_url: PropTypes.string,
+        login: PropTypes.string,
+        name: PropTypes.string,
+      })
+    ),
     getMembers: PropTypes.func.isRequired,
     params: PropTypes.shape({
       org: PropTypes.string,
@@ -43,21 +45,26 @@ class Github extends Component {
     }
   }
 
-  renderMember = (member) => (
+  renderMember = member =>
     <Link key={member.get('login')} to={`/github/${this.props.params.org}/${member.get('login')}`}>
       <img width={40} src={member.get('avatar_url')} alt={`${member.get('name')} 's avatar`} />
     </Link>
-  )
 
   render() {
     const { members, children } = this.props
     return (
       <div>
         <ul>
-          <li><Link to="/github/facebook">facebook</Link></li>
-          <li><Link to="/github/cheesecakelabs">cheesecakelabs</Link></li>
+          <li>
+            <Link to="/github/facebook">facebook</Link>
+          </li>
+          <li>
+            <Link to="/github/cheesecakelabs">cheesecakelabs</Link>
+          </li>
         </ul>
-        <p>{members.map(this.renderMember)}</p>
+        <p>
+          {members.map(this.renderMember)}
+        </p>
         {children}
       </div>
     )

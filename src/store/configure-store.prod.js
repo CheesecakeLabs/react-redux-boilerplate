@@ -9,11 +9,11 @@ import rootReducer from '_modules/reducers'
 
 const router = routerMiddleware(browserHistory)
 
-const configureStore = (preloadedState) =>
+const configureStore = preloadedState =>
   createStore(
     rootReducer,
     preloadedState,
-    applyMiddleware(thunk, errorMiddleware, promise(), router),
+    applyMiddleware(thunk, errorMiddleware, promise(), router)
   )
 
 export default configureStore
