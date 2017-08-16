@@ -45,3 +45,23 @@ Boilerplate project for a webapp using React/Redux architecture.
 }
 
 ```
+
+### VSCode config
+[Package](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+```
+{
+  "prettier.eslintIntegration": true,
+  "prettier.printWidth": 100,
+  "prettier.tabWidth": 2,
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "all",
+  "prettier.bracketSpacing": true,
+  "prettier.jsxBracketSameLine": true,
+  "prettier.parser": "babylon",
+  "prettier.semi": false,
+  "editor.formatOnSave": true,
+  "typescript.check.npmIsInstalled": false,
+  "extensions.ignoreRecommendations": true
+}
+
+```
