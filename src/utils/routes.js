@@ -1,6 +1,6 @@
-export const isLoggedIn = (auth) => auth && !!auth.get('key')
+export const isLoggedIn = auth => auth && !!auth.get('key')
 
-export const userLoginRequired = (store) => (nextState, replace) => {
+export const userLoginRequired = store => (nextState, replace) => {
   const auth = store.getState().auth
   if (!isLoggedIn(auth)) {
     replace({

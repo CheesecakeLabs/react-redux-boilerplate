@@ -5,6 +5,6 @@ global.render = render
 global.mount = mount
 
 // Fail tests on any console error
-console.error = (message) => {
+console.error = message => {
   throw new Error(message)
 }

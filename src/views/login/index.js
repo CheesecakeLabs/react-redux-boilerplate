@@ -51,7 +51,7 @@ class User extends Component {
     }
   }
 
-  onSubmit = (e) => {
+  onSubmit = e => {
     e.preventDefault()
     const { username, password } = this.state
     this.props.login(username, password)
@@ -65,7 +65,7 @@ class User extends Component {
     return null
   }
 
-  handleInput = (event) => {
+  handleInput = event => {
     const { name, value } = event.target
     this.setState({
       [name]: value,
@@ -86,7 +86,9 @@ class User extends Component {
           <p>Password:</p>
           <input type="password" name="password" value={password} onChange={this.handleInput} />
         </div>
-        <button type="submit" disabled={isLoading}>Login</button>
+        <button type="submit" disabled={isLoading}>
+          Login
+        </button>
         {this.getErrors()}
       </form>
     )
