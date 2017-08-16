@@ -1,0 +1,21 @@
+query GetUsers {
+  organization(login: "cheesecakelabs") {
+    name
+    url
+    members(first: 10) {
+      pageInfo {
+        hasNextPage
+        endCursor
+        startCursor
+      }
+      edges {
+        node {
+          name
+          login
+          name
+          email
+        }
+      }
+    }
+  }
+}

@@ -4,8 +4,8 @@ const DEFAULT_PATHS = {
   vendor: { path: '404', sri: '' },
 }
 
-module.exports = (initialHtml = '', paths = DEFAULT_PATHS) =>
-`<!doctype html>
+module.exports = (initialHtml = '', paths = DEFAULT_PATHS, state = {}) =>
+  `<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -18,5 +18,8 @@ module.exports = (initialHtml = '', paths = DEFAULT_PATHS) =>
   <div id="root">${initialHtml}</div>
   <script src="/static/${paths.vendor.path}" integrity="${paths.vendor.sri}"></script>
   <script src="/static/${paths.production.path}" integrity="${paths.production.sri}"></script>
+  <script>
+    window.__APOLLO_STATE__=${JSON.stringify(state).replace(/</g, '\\u003c')};
+  </script>
 </body>
 </html>`

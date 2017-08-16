@@ -42,47 +42,58 @@ module.exports = {
     }),
   ],
   resolve: {
-    modules: [
-      path.join(__dirname, 'src'),
-      'node_modules',
-    ],
+    modules: [path.join(__dirname, 'src'), 'node_modules'],
     extensions: ['.js'],
   },
   module: {
-    rules: [{
-      test: /\.js$/,
-      loader: 'babel-loader',
-      exclude: /node_modules/,
-    }, {
-      test: /\.css$/,
-      include: /node_modules/,
-      loader: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: [{
-          loader: 'css-loader',
-          options: {
-            modules: false,
-            minimize: true,
-          },
-        }],
-      }),
-    }, {
-      test: /\.css$/,
-      exclude: /node_modules/,
-      loader: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: [{
-          loader: 'css-loader',
-          options: {
-            modules: true,
-            minimize: true,
-            importLoaders: 2,
-            localIdentName: '[name]__[local]___[hash:base64:5]',
-          },
-        }, {
-          loader: 'postcss-loader',
-        }],
-      }),
-    }],
+    rules: [
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.css$/,
+        include: /node_modules/,
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                modules: false,
+                minimize: true,
+              },
+            },
+          ],
+        }),
+      },
+      {
+        test: /\.(graphql|gql)$/,
+        exclude: /node_modules/,
+        loader: 'graphql-tag/loader',
+      },
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true,
+                minimize: true,
+                importLoaders: 2,
+                localIdentName: '[name]__[local]___[hash:base64:5]',
+              },
+            },
+            {
+              loader: 'postcss-loader',
+            },
+          ],
+        }),
+      },
+    ],
   },
 }

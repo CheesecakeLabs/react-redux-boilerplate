@@ -1,19 +1,30 @@
 import express from 'express'
 import React from 'react'
-import { renderToString } from 'react-dom/server'
+import { renderToStaticMarkup, renderToString } from 'react-dom/server'
 import { match, RouterContext } from 'react-router'
-import { Provider } from 'react-redux'
+import {
+  ApolloProvider,
+  renderToStringWithData,
+  ApolloClient,
+  createNetworkInterface,
+} from 'react-apollo'
 import expressStaticGzip from 'express-static-gzip'
-import { serverStatus, getStatus } from '@cheesecakelabs/boilerplate/utils'
+import { serverStatus } from '@cheesecakelabs/boilerplate/utils'
+import cors from 'cors'
+import fetch from 'node-fetch'
 
 import './bootstrap'
 import { assetsPaths } from './utils/server'
 import baseHTML from './index.html'
 import routes from './routes'
 import configureStore from './store/configure-store.prod'
+import { GITHUB_TOKEN } from './config/environment'
+import { Html } from './html'
 
 const port = process.env.PORT || 3000
 const app = express()
+
+global.fetch = fetch
 
 serverStatus()
 
@@ -27,12 +38,56 @@ app.get('*', (req, res) => {
       res.redirect(redirect.pathname + redirect.search)
     } else {
       try {
-        const appHtml = renderToString(
-          <Provider store={store}>
+        const networkInterface = createNetworkInterface({
+          uri: 'https://api.github.com/graphql',
+          opts: {
+            headers: {
+              cookie: req.header('Cookie'),
+            },
+          },
+        })
+
+        networkInterface.use([
+          {
+            applyMiddleware(r, next) {
+              if (!r.options.headers) {
+                r.options.headers = {}
+              }
+              r.options.headers.Authorization = `bearer ${GITHUB_TOKEN}`
+              next()
+            },
+          },
+        ])
+
+        const options = {
+          networkInterface,
+        }
+
+        console.log('props', props)
+
+        const clientSSR = new ApolloClient({
+          ...options,
+          ssrMode: true,
+        })
+
+        const appHtml = (
+          <ApolloProvider client={clientSSR}>
             <RouterContext {...props} />
-          </Provider>,
+          </ApolloProvider>
         )
-        res.status(getStatus(err, props)).send(baseHTML(appHtml, assetsPaths))
+
+        renderToStringWithData(appHtml)
+          .then((content) => {
+            const initialState = clientSSR.getInitialState()
+
+            const html = <Html content={content} paths={assetsPaths} state={initialState} />
+
+            res.status(200)
+
+            res.send(`<!doctype html>\n${renderToStaticMarkup(html)}`)
+            res.end()
+          })
+          .catch(console.error)
       } catch (e) {
         // We should dump this error to a logging service (like Sentry)
         console.warn('render error:\n', e, '\n\n')
@@ -46,6 +101,12 @@ app.get('*', (req, res) => {
     res.statusCode,
   )
 })
+
+const corsOptions = {
+  origin: 'localhost',
+  credentials: true, // <-- REQUIRED backend setting
+}
+app.use(cors(corsOptions))
 
 app.listen(port, (err) => {
   if (err) {

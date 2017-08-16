@@ -12,54 +12,60 @@ module.exports = {
     publicPath: '/static/',
   },
   resolve: {
-    modules: [
-      path.join(__dirname, 'src'),
-      'node_modules',
-    ],
+    modules: [path.join(__dirname, 'src'), 'node_modules'],
     extensions: ['.js'],
   },
-  plugins: [
-    new webpack.DefinePlugin({
-      fetch: () => new Promise(() => {}),
-    }),
-    new ExtractTextPlugin('styles.css'),
-  ],
+  plugins: [new ExtractTextPlugin('styles.css')],
   module: {
-    rules: [{
-      test: /\.js$/,
-      loader: 'babel-loader',
-      exclude: /node_modules/,
-      options: {
-        presets: ['react'],
+    rules: [
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+        options: {
+          presets: ['react'],
+        },
       },
-    }, {
-      test: /\.css$/,
-      include: /node_modules/,
-      loader: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: [{
-          loader: 'css-loader',
-          options: {
-            modules: false,
-          },
-        }],
-      }),
-    }, {
-      test: /\.css$/,
-      exclude: /node_modules/,
-      loader: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: [{
-          loader: 'css-loader',
-          options: {
-            modules: true,
-            importLoaders: 2,
-            localIdentName: '[name]__[local]___[hash:base64:5]',
-          },
-        }, {
-          loader: 'postcss-loader',
-        }],
-      }),
-    }],
+      {
+        test: /\.css$/,
+        include: /node_modules/,
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                modules: false,
+              },
+            },
+          ],
+        }),
+      },
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true,
+                importLoaders: 2,
+                localIdentName: '[name]__[local]___[hash:base64:5]',
+              },
+            },
+            {
+              loader: 'postcss-loader',
+            },
+          ],
+        }),
+      },
+      {
+        test: /\.(graphql|gql)$/,
+        exclude: /node_modules/,
+        loader: 'graphql-tag/loader',
+      },
+    ],
   },
 }

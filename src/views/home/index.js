@@ -1,69 +1,48 @@
 import React, { PureComponent } from 'react'
+import PropTypes from 'react-proptypes'
+import { graphql } from 'react-apollo'
 
-import Button, { ButtonType, ButtonTheme, ButtonSize } from '../../components/button'
-
-import styles from './styles.css'
+import getUsers from '../../graphql/github/get-users.graphql'
 
 class Home extends PureComponent {
-
-  state = {
-    counter: 0,
+  static propTypes = {
+    isLoading: PropTypes.bool.isRequired,
+    organization: PropTypes.shape({
+      name: PropTypes.string,
+      url: PropTypes.string,
+      members: PropTypes.arrayOf(PropTypes.object),
+    }),
   }
 
-  incrementCounter = () => {
-    this.setState({
-      counter: this.state.counter + 1,
-    })
-  }
-
-  decrementCounter = () => {
-    this.setState({
-      counter: this.state.counter - 1,
-    })
+  static defaultProps = {
+    organization: {
+      name: '',
+      url: '',
+      members: [],
+    },
   }
 
   render() {
-    const { counter } = this.state
+    const { isLoading, organization } = this.props
+    console.log(this.props.isLoading, this.props.organization)
     return (
       <div>
-        <div className={styles.grid}>
-          <div>
-            <Button
-              type={ButtonType.BUTTON}
-              theme={ButtonTheme.POSITIVE}
-              onClick={this.incrementCounter}
-            >
-              Increment
-            </Button>
-          </div>
-          <div>
-            {<div className={styles.counter}>{counter}</div>}
-          </div>
-          <div>
-            <Button
-              type={ButtonType.BUTTON}
-              theme={ButtonTheme.DANGER}
-              onClick={this.decrementCounter}
-            >
-              Decrement
-            </Button>
-          </div>
-        </div>
-        <br />
-        <div className={styles.grid}>
-          <div>
-            <Button>Default</Button>
-          </div>
-          <div>
-            <Button size={ButtonSize.SMALL}>Small</Button>
-          </div>
-          <div>
-            <Button size={ButtonSize.LARGE}>Larger</Button>
-          </div>
-        </div>
+        {isLoading.toString()} - {organization.name} - {organization.url}
       </div>
     )
   }
 }
 
-export default Home
+export default graphql(getUsers, {
+  props: (props) => {
+    console.log('aqui', props)
+    const { data: { loading, organization } } = props
+    return {
+      isLoading: loading,
+      organization,
+    }
+  },
+  options: {
+    ssr: true,
+  },
+})(Home)
