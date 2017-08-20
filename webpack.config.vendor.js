@@ -18,7 +18,6 @@ module.exports = {
       'redux',
       'redux-define',
       'redux-promise-middleware',
-      'redux-thunk',
     ],
   },
 

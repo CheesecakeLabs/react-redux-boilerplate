@@ -1,5 +1,4 @@
 import { createStore, applyMiddleware, compose } from 'redux'
-import thunk from 'redux-thunk'
 import { browserHistory } from 'react-router'
 import promise from 'redux-promise-middleware'
 import { routerMiddleware } from 'react-router-redux'
@@ -22,7 +21,7 @@ const configureStore = preloadedState => {
   const store = createStore(
     rootReducer,
     preloadedState,
-    compose(applyMiddleware(thunk, errorMiddleware, promise(), router, logger))
+    compose(applyMiddleware(errorMiddleware, promise(), router, logger))
   )
 
   if (module.hot) {

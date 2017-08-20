@@ -1,5 +1,4 @@
 import { createStore, applyMiddleware } from 'redux'
-import thunk from 'redux-thunk'
 import { browserHistory } from 'react-router'
 import { routerMiddleware } from 'react-router-redux'
 import promise from 'redux-promise-middleware'
@@ -10,10 +9,6 @@ import rootReducer from '_modules/reducers'
 const router = routerMiddleware(browserHistory)
 
 const configureStore = preloadedState =>
-  createStore(
-    rootReducer,
-    preloadedState,
-    applyMiddleware(thunk, errorMiddleware, promise(), router)
-  )
+  createStore(rootReducer, preloadedState, applyMiddleware(errorMiddleware, promise(), router))
 
 export default configureStore
