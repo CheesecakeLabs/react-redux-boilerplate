@@ -31,7 +31,7 @@ app.get('*', (req, res) => {
         const appHtml = renderToString(
           <Provider store={store}>
             <RouterContext {...props} />
-          </Provider>,
+          </Provider>
         )
         res.status(getStatus(err, props)).send(baseHTML(appHtml, assetsPaths))
       } catch (e) {
@@ -44,11 +44,11 @@ app.get('*', (req, res) => {
   console.info(
     `[${new Date().toLocaleString()}]`,
     `"${req.method} ${req.url} HTTP/${req.httpVersion}"`,
-    res.statusCode,
+    res.statusCode
   )
 })
 
-app.listen(port, (err) => {
+app.listen(port, err => {
   if (err) {
     console.error(err)
     return

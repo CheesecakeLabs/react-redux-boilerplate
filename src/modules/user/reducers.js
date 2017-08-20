@@ -14,7 +14,7 @@ export const user = createReducer(INITIAL_STATE, {
     state.mergeDeep(normalize(payload, [userSchema]).entities.user),
 })
 
-const getLogin = (u) => u.login
+const getLogin = u => u.login
 export const org = createReducer(INITIAL_STATE, {
   [GET_MEMBERS.FULFILLED]: (state, { payload, meta }) =>
     state.set(meta.org, fromJS(payload.map(getLogin))),

@@ -18,19 +18,11 @@ const router = routerMiddleware(browserHistory)
 /**
  * Creates a preconfigured store.
  */
-const configureStore = (preloadedState) => {
+const configureStore = preloadedState => {
   const store = createStore(
     rootReducer,
     preloadedState,
-    compose(
-      applyMiddleware(
-        thunk,
-        errorMiddleware,
-        promise(),
-        router,
-        logger,
-      ),
-    ),
+    compose(applyMiddleware(thunk, errorMiddleware, promise(), router, logger))
   )
 
   if (module.hot) {

@@ -5,7 +5,6 @@ import Button, { ButtonType, ButtonTheme, ButtonSize } from '_components//button
 import styles from './styles.css'
 
 class Home extends PureComponent {
-
   state = {
     counter: 0,
   }
@@ -37,7 +36,11 @@ class Home extends PureComponent {
             </Button>
           </div>
           <div>
-            {<div className={styles.counter}>{counter}</div>}
+            {
+              <div className={styles.counter}>
+                {counter}
+              </div>
+            }
           </div>
           <div>
             <Button

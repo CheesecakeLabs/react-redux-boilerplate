@@ -11,10 +11,12 @@ const port = process.env.PORT || 3000
 const app = express()
 const compiler = webpack(config)
 
-app.use(webpackDevMiddleware(compiler, {
-  publicPath: config.output.publicPath,
-  stats: 'errors-only',
-}))
+app.use(
+  webpackDevMiddleware(compiler, {
+    publicPath: config.output.publicPath,
+    stats: 'errors-only',
+  })
+)
 
 app.use(webpackHotMiddleware(compiler))
 
@@ -29,7 +31,7 @@ app.get('*', (req, res) => {
   res.send(baseHTML())
 })
 
-app.listen(port, ip, (err) => {
+app.listen(port, ip, err => {
   if (err) {
     console.warn(err)
     return

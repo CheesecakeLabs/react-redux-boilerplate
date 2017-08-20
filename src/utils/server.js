@@ -8,13 +8,12 @@ import clientStats from '../../dist/production.stats.json' // eslint-disable-lin
 const checksum = (str, algorithm = 'sha384', encoding = 'base64') =>
   crypto.createHash(algorithm).update(str, 'utf8').digest(encoding)
 
-const fileSum = (file, algorithm) =>
-  checksum(fs.readFileSync(file), algorithm)
+const fileSum = (file, algorithm) => checksum(fs.readFileSync(file), algorithm)
 
 const calculateSRI = (file, algorithm) =>
   `${algorithm}-${fileSum(path.join('.', 'dist', file), algorithm)}`
 
-const getPathData = (asset) => ({ path: asset, sri: calculateSRI(asset, 'sha384') })
+const getPathData = asset => ({ path: asset, sri: calculateSRI(asset, 'sha384') })
 
 export const assetsPaths = {
   vendor: getPathData(vendorStats['vendor.js']),
