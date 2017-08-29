@@ -10,7 +10,7 @@ import User from '_views/github/user'
 import Login from '_views/login'
 import Restrict from '_views/restrict'
 
-const routes = store =>
+const routes = store => (
   <Route component={App}>
     <Route path="/" component={Home} />
     <Route path="/login" component={Login} />
@@ -20,5 +20,6 @@ const routes = store =>
     </Route>
     <Route path="*" component={NotFound} />
   </Route>
+)
 
 export default routes

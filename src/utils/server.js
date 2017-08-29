@@ -6,7 +6,10 @@ import vendorStats from '../../dist/vendor.stats.json' // eslint-disable-line im
 import clientStats from '../../dist/production.stats.json' // eslint-disable-line import/no-unresolved
 
 const checksum = (str, algorithm = 'sha384', encoding = 'base64') =>
-  crypto.createHash(algorithm).update(str, 'utf8').digest(encoding)
+  crypto
+    .createHash(algorithm)
+    .update(str, 'utf8')
+    .digest(encoding)
 
 const fileSum = (file, algorithm) => checksum(fs.readFileSync(file), algorithm)
 

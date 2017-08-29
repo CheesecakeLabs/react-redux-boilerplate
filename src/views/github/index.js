@@ -45,10 +45,11 @@ class Github extends Component {
     }
   }
 
-  renderMember = member =>
+  renderMember = member => (
     <Link key={member.get('login')} to={`/github/${this.props.params.org}/${member.get('login')}`}>
       <img width={40} src={member.get('avatar_url')} alt={`${member.get('name')} 's avatar`} />
     </Link>
+  )
 
   render() {
     const { members, children } = this.props
@@ -62,9 +63,7 @@ class Github extends Component {
             <Link to="/github/cheesecakelabs">cheesecakelabs</Link>
           </li>
         </ul>
-        <p>
-          {members.map(this.renderMember)}
-        </p>
+        <p>{members.map(this.renderMember)}</p>
         {children}
       </div>
     )

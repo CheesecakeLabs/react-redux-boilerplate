@@ -47,20 +47,12 @@ class User extends Component {
     return (
       <div>
         <h1>
-          <a href={user.get('html_url')}>
-            {user.get('name')}
-          </a>
+          <a href={user.get('html_url')}>{user.get('name')}</a>
         </h1>
         <img src={user.get('avatar_url')} alt={`${user.get('name')} 's avatar`} />
-        <p>
-          @{user.get('login')}
-        </p>
-        <p>
-          {user.get('email')}
-        </p>
-        <p>
-          {user.get('location')}
-        </p>
+        <p>@{user.get('login')}</p>
+        <p>{user.get('email')}</p>
+        <p>{user.get('location')}</p>
       </div>
     )
   }

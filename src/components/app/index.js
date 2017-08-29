@@ -16,9 +16,7 @@ class App extends Component {
       <div>
         <header>This is the app header</header>
 
-        <main>
-          {children}
-        </main>
+        <main>{children}</main>
 
         <footer>This is the app footer</footer>
       </div>
