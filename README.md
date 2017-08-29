@@ -32,17 +32,6 @@ Boilerplate project for a webapp using React/Redux architecture.
     "custom_file_extensions": [],
     "additional_cli_args": {},
     "max_file_size_limit": -1,
-
-    "prettier_options": {
-        "printWidth": 100,
-        "tabWidth": 2,
-        "singleQuote": true,
-        "trailingComma": "es5",
-        "bracketSpacing": true,
-        "jsxBracketSameLine": false,
-        "parser": "babylon",
-        "semi": false
-    }
 }
 
 ```
@@ -52,14 +41,6 @@ Boilerplate project for a webapp using React/Redux architecture.
 ```
 {
   "prettier.eslintIntegration": true,
-  "prettier.printWidth": 100,
-  "prettier.tabWidth": 2,
-  "prettier.singleQuote": true,
-  "prettier.trailingComma": "es5",
-  "prettier.bracketSpacing": true,
-  "prettier.jsxBracketSameLine": false,
-  "prettier.parser": "babylon",
-  "prettier.semi": false,
   "editor.formatOnSave": true,
   "typescript.check.npmIsInstalled": false,
   "extensions.ignoreRecommendations": true
