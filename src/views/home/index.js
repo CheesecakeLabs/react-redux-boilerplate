@@ -35,13 +35,7 @@ class Home extends PureComponent {
               Increment
             </Button>
           </div>
-          <div>
-            {
-              <div className={styles.counter}>
-                {counter}
-              </div>
-            }
-          </div>
+          <div>{<div className={styles.counter}>{counter}</div>}</div>
           <div>
             <Button
               type={ButtonType.BUTTON}

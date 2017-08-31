@@ -97,6 +97,7 @@
     "immutable": "^3.8.1",
     "normalize.css": "^7.0.0",
     "normalizr": "^3.2.3",
+    "prettier": "^1.6.0",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
