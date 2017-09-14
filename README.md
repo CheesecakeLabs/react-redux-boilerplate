@@ -1,3 +1,5 @@
+<img src="https://s3-us-west-2.amazonaws.com/ckl-generic-hosting/cheesecake-logo-blue.png" height="60">
+
 # react-redux-boilerplate
 Boilerplate project for a webapp using React/Redux architecture.
 
