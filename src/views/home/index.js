@@ -4,6 +4,8 @@ import Button, { ButtonType, ButtonTheme, ButtonSize } from '_components//button
 
 import styles from './styles.css'
 
+const noop = () => {}
+
 class Home extends PureComponent {
   state = {
     counter: 0,
@@ -49,13 +51,17 @@ class Home extends PureComponent {
         <br />
         <div className={styles.grid}>
           <div>
-            <Button>Default</Button>
+            <Button onClick={noop}>Default</Button>
           </div>
           <div>
-            <Button size={ButtonSize.SMALL}>Small</Button>
+            <Button onClick={noop} size={ButtonSize.SMALL}>
+              Small
+            </Button>
           </div>
           <div>
-            <Button size={ButtonSize.LARGE}>Larger</Button>
+            <Button onClick={noop} size={ButtonSize.LARGE}>
+              Larger
+            </Button>
           </div>
         </div>
       </div>

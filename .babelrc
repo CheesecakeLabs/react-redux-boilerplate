@@ -1,5 +1,4 @@
 {
-  "plugins": ["transform-react-inline-elements"],
   "presets": [
     [
       "es2015",
@@ -22,6 +21,9 @@
         "stage-0",
         "react"
       ]
+    },
+    "production": {
+      "plugins": ["transform-react-inline-elements"]
     }
   }
 }
