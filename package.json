@@ -20,9 +20,27 @@
     "lint": "yarn eslint && yarn stylelint",
     "eslint": "eslint src stories tests *.js",
     "stylelint": "stylelint 'src/**/*.css'",
+    "size": "size-limit",
     "precommit": "yarn lint",
     "prepush": "npm test"
   },
+  "size-limit": [
+    {
+      "path": "dist/vendor.*.js",
+      "webpack": false,
+      "limit": "300 KB"
+    },
+    {
+      "path": "dist/production.*.js",
+      "webpack": false,
+      "limit": "200 KB"
+    },
+    {
+      "path": "dist/production.*.css",
+      "webpack": false,
+      "limit": "40 KB"
+    }
+  ],
   "jest": {
     "verbose": false,
     "transform": {
@@ -81,6 +99,7 @@
     "react-addons-test-utils": "^15.5.1",
     "react-test-renderer": "^15.5.4",
     "redux-logger": "^2.6.1",
+    "size-limit": "^0.11.6",
     "style-loader": "^0.14.1",
     "stylelint": "^7.10.1",
     "stylelint-config-standard": "^16.0.0",
