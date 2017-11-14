@@ -3,12 +3,14 @@ import { render } from 'react-dom'
 import { Router, browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { Provider } from 'react-redux'
+import { fromJS } from 'immutable'
 
 import './bootstrap'
 import configureStore from './store/configure-store'
 import routes from './routes'
 
-const store = configureStore()
+// eslint-disable-next-line no-underscore-dangle
+const store = configureStore(fromJS(window.__INITIAL_STATE__).toObject())
 const history = syncHistoryWithStore(browserHistory, store)
 
 const Root = () => (

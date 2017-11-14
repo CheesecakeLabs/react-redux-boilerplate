@@ -5,7 +5,9 @@ import { connect } from 'react-redux'
 import { List } from 'immutable'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 
-import { getMembers } from '_modules/user/actions'
+import { getOrgMembers } from '_services/user'
+import { org as orgReducer, user as userReducer } from '_modules/user/reducers'
+import { getMembers, GET_MEMBERS } from '_modules/user/actions'
 import { getUsersFromOrg } from '_modules/user/selectors'
 
 const mapStateToProps = (state, { params }) => ({
@@ -35,6 +37,22 @@ class Github extends Component {
     children: null,
   }
 
+  static getData({ org }) {
+    return [
+      getOrgMembers(org).then(payload => ({
+        org: orgReducer(undefined, {
+          type: GET_MEMBERS.FULFILLED,
+          payload,
+          meta: { org },
+        }),
+        user: userReducer(undefined, {
+          type: GET_MEMBERS.FULFILLED,
+          payload,
+        }),
+      })),
+    ]
+  }
+
   componentWillMount() {
     this.props.getMembers(this.props.params.org)
   }
@@ -47,7 +65,7 @@ class Github extends Component {
 
   renderMember = member => (
     <Link key={member.get('login')} to={`/github/${this.props.params.org}/${member.get('login')}`}>
-      <img width={40} src={member.get('avatar_url')} alt={`${member.get('name')} 's avatar`} />
+      <img width={40} src={member.get('avatar_url')} alt={`${member.get('login')}'s avatar`} />
     </Link>
   )
 

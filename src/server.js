@@ -5,8 +5,13 @@ import { match, RouterContext } from 'react-router'
 import { Provider } from 'react-redux'
 import expressStaticGzip from 'express-static-gzip'
 import { serverStatus, getStatus } from '@cheesecakelabs/boilerplate/utils'
+import Helmet from 'react-helmet'
+import flatten from 'lodash.flatten'
+import { Map } from 'immutable'
 
-import { assetsPaths } from '_utils/server'
+import { assetsPaths, callGetData } from '_utils/server'
+
+import appPackage from '../package.json'
 
 import './bootstrap'
 import baseHTML from './index.html'
@@ -20,22 +25,38 @@ serverStatus()
 
 // Ideally, you'd have a proxy server (like nginx) serving /static files
 app.use('/static', expressStaticGzip('dist'))
+app.get('/version', (req, res) => res.status(200).send(appPackage.version))
 
 app.get('*', (req, res) => {
-  const store = configureStore()
-  match({ routes: routes(store), location: req.url }, (err, redirect, props) => {
+  const initialState = {} // here goes anything that has to be done with cookies/whatever
+  match({ routes: routes(initialState), location: req.url }, (err, redirect, props) => {
     if (redirect && !err) {
       res.redirect(redirect.pathname + redirect.search)
     } else {
       try {
-        const appHtml = renderToString(
-          <Provider store={store}>
-            <RouterContext {...props} />
-          </Provider>
-        )
-        res.status(getStatus(err, props)).send(baseHTML(appHtml, assetsPaths))
+        const promises = props.components.map(callGetData.bind(null, props.params)).filter(Boolean)
+        Promise.all(flatten(promises))
+          .then((data = []) => {
+            const preloadedState = new Map().withMutations(newMap => {
+              data.forEach(getData => {
+                newMap.mergeDeep(getData)
+              })
+            })
+            const store = configureStore(preloadedState.toObject())
+            const appHtml = renderToString(
+              <Provider store={store}>
+                <RouterContext {...props} />
+              </Provider>
+            )
+            res
+              .status(getStatus(err, props))
+              .send(baseHTML(appHtml, preloadedState, assetsPaths, Helmet.rewind()))
+          })
+          .catch(e => {
+            console.warn('pre-fetch error:\n', e, '\n\n')
+            res.status(500).send(baseHTML('', {}, assetsPaths))
+          })
       } catch (e) {
-        // We should dump this error to a logging service (like Sentry)
         console.warn('render error:\n', e, '\n\n')
         res.status(500).send(baseHTML('', {}, assetsPaths))
       }

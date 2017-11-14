@@ -15,8 +15,8 @@ module.exports = {
   },
   resolve,
   plugins: [
-    new webpack.DefinePlugin({
-      fetch: () => new Promise(() => {}),
+    new webpack.ProvidePlugin({
+      fetch: 'node-fetch',
     }),
     new ExtractTextPlugin('styles.css'),
   ],
