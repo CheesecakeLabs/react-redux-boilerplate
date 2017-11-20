@@ -4,18 +4,29 @@ const DEFAULT_PATHS = {
   vendor: { path: '404', sri: '' },
 }
 
-module.exports = (initialHtml = '', paths = DEFAULT_PATHS) =>
+module.exports = (
+  initialHtml = '',
+  initialState = {},
+  paths = DEFAULT_PATHS,
+  head = { title: '', meta: '', link: '' }
+) =>
   `<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  ${head && head.title.toString()}
+  ${head && head.meta.toString()}
+  ${head && head.link.toString()}
   <title>React Redux Boilerplate</title>
   <link rel="stylesheet" href="/static/${paths.styles.path}" integrity="${paths.styles.sri}" />
 </head>
 <body>
   <div id="root">${initialHtml}</div>
+  <script>
+    window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};
+  </script>
   <script src="/static/${paths.vendor.path}" integrity="${paths.vendor.sri}"></script>
   <script src="/static/${paths.production.path}" integrity="${paths.production.sri}"></script>
 </body>

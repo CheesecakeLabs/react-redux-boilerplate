@@ -23,3 +23,6 @@ export const assetsPaths = {
   production: getPathData(clientStats['production.js']),
   styles: getPathData(clientStats['production.css']),
 }
+
+export const callGetData = (params, component) =>
+  component && component.getData && component.getData(params)
