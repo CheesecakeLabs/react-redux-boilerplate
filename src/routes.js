@@ -18,6 +18,7 @@ const routes = store => (
     <Route path="github/:org" component={Github}>
       <Route path=":user" component={User} />
     </Route>
+
     <Route path="*" component={NotFound} />
   </Route>
 )
