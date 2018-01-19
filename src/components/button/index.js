@@ -21,10 +21,11 @@ export const ButtonSize = {
   LARGE: 'large',
 }
 
-const Button = ({ type, onClick, children, theme, size }) => {
+const Button = ({ type, onClick, onClickWith, children, theme, size }) => {
+  const handleClick = () => onClick(onClickWith)
   const className = `${styles.button} ${styles[theme]} ${styles[size]}`
   return (
-    <button type={type} onClick={onClick} className={className}>
+    <button type={type} onClick={handleClick} className={className}>
       {children}
     </button>
   )
@@ -35,6 +36,7 @@ Button.propTypes = {
   theme: PropTypes.oneOf(Object.values(ButtonTheme)),
   size: PropTypes.oneOf(Object.values(ButtonSize)),
   onClick: PropTypes.func.isRequired,
+  onClickWith: PropTypes.any, // eslint-disable-line react/forbid-prop-types
   children: PropTypes.node.isRequired,
 }
 
@@ -42,6 +44,7 @@ Button.defaultProps = {
   type: ButtonType.BUTTON,
   theme: ButtonTheme.DEFAULT,
   size: ButtonSize.MEDIUM,
+  onClickWith: undefined,
 }
 
 export default Button

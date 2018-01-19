@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
 import { routerReducer as routing } from 'react-router-redux'
-import { error, loading } from '@cheesecakelabs/boilerplate/reducers'
+import { error, loading, pagination } from '@cheesecakelabs/boilerplate/reducers'
 
-import { user, org } from './user/reducers'
+import { user, org, repos } from './user/reducers'
 import { auth } from './auth/reducers'
 
 const rootReducer = combineReducers({
@@ -10,8 +10,10 @@ const rootReducer = combineReducers({
   user,
   org,
   auth,
+  repos,
   error,
   loading,
+  pagination,
 })
 
 export default rootReducer
